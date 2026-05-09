@@ -38,7 +38,7 @@
 	<!-- Include README + NuGet icon in the package -->
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="\" />
-		<None Include="..\assets\branding\logo\nuget-256\icon.png" Pack="true" PackagePath="icon.png" />
+		<None Include="..\assets\sashiko-logo\nuget\sashiko-logo-nuget.png" Pack="true" PackagePath="icon.png" />
 	</ItemGroup>
 
 	<!-- Internal visibility -->

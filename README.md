@@ -1,7 +1,7 @@
 # 🌸 Sashiko
 
 <p align="center">
-  <img src="./assets/branding/logo/2000x2000/full-logo.png" width="250" alt="Sashiko Logo">
+  <img src="./assets/sashiko-logo/github/sashiko-github-logo.png" width="420" alt="Sashiko Logo">
 </p>
 
 **Sashiko** is an open-source ecosystem of modular .NET libraries built to make development faster, cleaner, and more enjoyable.
@@ -109,6 +109,17 @@ Package-level documentation lives inside each package folder:
 
 ---
 
+## 🎨 Branding
+
+Official Sashiko branding assets live in [assets/sashiko-logo](./assets/sashiko-logo). The repository uses the GitHub logo at
+[assets/sashiko-logo/github/sashiko-github-logo.png](./assets/sashiko-logo/github/sashiko-github-logo.png) and the NuGet package icon at
+[assets/sashiko-logo/nuget/sashiko-logo-nuget.png](./assets/sashiko-logo/nuget/sashiko-logo-nuget.png).
+
+The assets are provided to identify the official Sashiko project and packages. They are proprietary and are not covered by the
+Apache 2.0 source-code license. See [assets/ASSETS-LICENSE.md](./assets/ASSETS-LICENSE.md) before reusing them outside this repository.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
@@ -137,4 +148,5 @@ Good contributions include:
 The source code is licensed under the **Apache License 2.0**.  
 See [LICENSE](./LICENSE) for the full license text.
 
-Branding assets in the `/assets` directory are proprietary. See [assets/ASSETS-LICENSE.md](./assets/ASSETS-LICENSE.md) for details.
+Branding assets in the `/assets` directory are proprietary and are governed separately by
+[assets/ASSETS-LICENSE.md](./assets/ASSETS-LICENSE.md).

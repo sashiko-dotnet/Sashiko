@@ -151,7 +151,14 @@ Maintenance tooling is not required at runtime by consumer applications.
 
 ## 🎨 Assets and Branding
 
-The source code is open source, but the Sashiko logo and branding assets in `/assets` are protected. If you want to use them outside this repository, please contact the maintainer first.
+The source code is open source, but the Sashiko logo and branding assets in `/assets` are protected and are not part of the Apache 2.0 source-code license.
+
+Use the current canonical asset paths when updating package metadata or documentation:
+
+- `assets/sashiko-logo/github/sashiko-github-logo.png`
+- `assets/sashiko-logo/nuget/sashiko-logo-nuget.png`
+
+Do not modify, redistribute, or use the Sashiko branding for another project, product, or service without written permission from the maintainer. For the full asset terms, see [assets/ASSETS-LICENSE.md](./assets/ASSETS-LICENSE.md).
 
 ---
 
