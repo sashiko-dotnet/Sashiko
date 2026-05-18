@@ -5,6 +5,18 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.0] - 2026-05-18
+
+### Added
+- Added embedded name data and generation rules for Standard Arabic (`arb`), Bengali (`ben`), Portuguese (`por`), and Urdu (`urd`).
+- Expanded `LanguageId` so Sashiko.Names includes the top 10 languages by total speaker count.
+- Prepared the package for release with the refined Sashiko NuGet icon asset.
+
+### Documentation
+- Updated supported-language documentation and name data source notes for the expanded language set.
+
+---
+
 ## [0.1.1] - 2026-05-04
 
 ### Improved

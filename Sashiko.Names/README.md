@@ -94,17 +94,23 @@ var icelandic = service.Generate(
 
 | Language | ISO 639-3 | `LanguageId` |
 |----------|-----------|--------------|
+| Standard Arabic | `arb` | `Arb` |
+| Bengali | `ben` | `Ben` |
 | Mandarin Chinese | `cmn` | `Cmn` |
 | English | `eng` | `Eng` |
 | French | `fra` | `Fra` |
 | Hindi | `hin` | `Hin` |
 | Icelandic | `isl` | `Isl` |
 | Italian | `ita` | `Ita` |
+| Portuguese | `por` | `Por` |
 | Romanian | `ron` | `Ron` |
 | Russian | `rus` | `Rus` |
 | Spanish | `spa` | `Spa` |
+| Urdu | `urd` | `Urd` |
 
 `LanguageId.Random` selects one supported language at generation time.
+
+The supported set includes the top 10 languages by total speaker count, represented by their ISO 639-3 identifiers.
 
 ---
 
