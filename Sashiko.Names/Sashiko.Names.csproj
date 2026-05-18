@@ -7,7 +7,7 @@
 
     <!-- NuGet package metadata -->
     <PackageId>Sashiko.Names</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>Alexandru Luca (alex98luca)</Authors>
     <Description>
       Culturally aware person name generator for the Sashiko ecosystem.
