@@ -2,15 +2,19 @@
 {
 	public enum LanguageId
 	{
+		Arb,
+		Ben,
 		Cmn,
 		Eng,
 		Fra,
 		Hin,
 		Isl,
 		Ita,
+		Por,
 		Ron,
 		Rus,
 		Spa,
+		Urd,
 		Random
 	}
 }
