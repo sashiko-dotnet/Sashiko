@@ -7,7 +7,7 @@
 
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.Core</PackageId>
-		<Version>0.4.0</Version>
+		<Version>0.4.1</Version>
 		<Description>
 			Core utilities for the Sashiko ecosystem. Provides deterministic randomization,
 			text normalization, unit conversions, shared abstractions, and foundational helpers

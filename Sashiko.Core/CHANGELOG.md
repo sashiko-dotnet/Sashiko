@@ -5,6 +5,18 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.4.1] - 2026-05-23
+
+### Changed
+- Refreshed package metadata to use the official Sashiko website and the `sashiko-dotnet/Sashiko` canonical repository.
+- Applied centralized shared NuGet metadata used by public Sashiko packages.
+- Prepared the release workflow for NuGet Trusted Publishing under the Sashiko NuGet organization.
+
+### Notes
+This patch release does not change public APIs or runtime behavior.
+
+---
+
 ## [0.4.0] - 2026-05-04
 
 ### Added
