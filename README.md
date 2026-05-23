@@ -4,10 +4,18 @@
   <img src="./assets/sashiko-logo/github/sashiko-github-logo.png" width="420" alt="Sashiko Logo">
 </p>
 
-**Sashiko** is an open-source ecosystem of modular .NET libraries built to make development faster, cleaner, and more enjoyable.
+**Sashiko** is an open-source .NET ecosystem of modular libraries created and maintained by Alexandru Luca.
 
 The project is inspired by the Japanese craft of sashiko stitching: small, precise patterns that become stronger and more useful when composed together.
 Each Sashiko package is designed to stand on its own, while also fitting into a larger set of reusable tools for data-rich applications, simulations, and creative software projects.
+
+Official project links:
+
+- **Website**: [sashiko.alex98luca.com](https://sashiko.alex98luca.com)
+- **Repository**: [sashiko-dotnet/Sashiko](https://github.com/sashiko-dotnet/Sashiko)
+- **NuGet organization**: [Sashiko](https://www.nuget.org/profiles/Sashiko)
+
+The Sashiko GitHub and NuGet organizations provide project-level ownership, discoverability, and consistency. They do not represent a registered company.
 
 ---
 
@@ -138,7 +146,7 @@ Good contributions include:
 ## 📬 Contact
 
 - **Email**: [sashiko@alex98luca.com](mailto:sashiko@alex98luca.com)
-- **Author**: Alexandru Luca (alex98luca)
+- **Creator and maintainer**: Alexandru Luca (alex98luca)
 - **LinkedIn**: [Alexandru Luca](https://www.linkedin.com/in/alexandru-98-luca)
 
 ---

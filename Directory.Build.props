@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <IsSashikoPublicPackage>false</IsSashikoPublicPackage>
+    <IsSashikoPublicPackage Condition="'$(MSBuildProjectName)' == 'Sashiko.Core' Or '$(MSBuildProjectName)' == 'Sashiko.Validation' Or '$(MSBuildProjectName)' == 'Sashiko.Registries' Or '$(MSBuildProjectName)' == 'Sashiko.SystemMonitor' Or '$(MSBuildProjectName)' == 'Sashiko.Languages' Or '$(MSBuildProjectName)' == 'Sashiko.Names'">true</IsSashikoPublicPackage>
+    <SashikoSharedPackageTags>sashiko;dotnet;csharp;open-source;modular-architecture</SashikoSharedPackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsSashikoPublicPackage)' == 'true'">
+    <Authors>Alexandru Luca</Authors>
+    <Product>Sashiko</Product>
+    <PackageProjectUrl>https://sashiko.alex98luca.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sashiko-dotnet/Sashiko</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsSashikoPublicPackage)' == 'true'">
+    <None Include="$(MSBuildThisFileDirectory)assets\sashiko-logo\nuget\sashiko-logo-nuget.png" Pack="true" PackagePath="icon.png" Visible="false" />
+  </ItemGroup>
+</Project>

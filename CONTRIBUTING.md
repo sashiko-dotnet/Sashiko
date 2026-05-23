@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Sashiko.
 
-Sashiko is an ecosystem of small, carefully maintained .NET packages. Each package should feel useful on its own, while still sharing the same standards, tone, and engineering care as the rest of the repository.
+Sashiko is an open-source ecosystem of small, carefully maintained .NET packages created and maintained by Alexandru Luca. Each package should feel useful on its own, while still sharing the same standards, tone, and engineering care as the rest of the repository.
 
 The goal is simple: keep Sashiko friendly to contribute to, pleasant to use, and clean enough that future work does not become future debt.
 
