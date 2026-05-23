@@ -8,36 +8,16 @@
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.Validation</PackageId>
 		<Version>0.1.1</Version>
-		<Authors>Alexandru Luca (alex98luca)</Authors>
 		<Description>
 			Structural validation engine for the Sashiko ecosystem. Provides hierarchical schema extraction,
 			structural comparison, and format-agnostic validation for configuration files and runtime inputs.
 		</Description>
-		<PackageTags>validation; schema; json; sashiko; configuration; structural</PackageTags>
-
-		<!-- Links -->
-		<PackageProjectUrl>https://github.com/alex98luca/Sashiko</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/alex98luca/Sashiko</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-
-		<!-- License -->
-		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-
-		<!-- README -->
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<IncludePackageReadmeFile>true</IncludePackageReadmeFile>
-
-		<!-- NuGet Icon -->
-		<PackageIcon>icon.png</PackageIcon>
-
-		<!-- Optional -->
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageTags>$(SashikoSharedPackageTags);validation;schema;json;configuration;structural</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="Sashiko.Validation.Tests" />
 		<None Include="README.md" Pack="true" PackagePath="\" />
-		<None Include="..\assets\sashiko-logo\nuget\sashiko-logo-nuget.png" Pack="true" PackagePath="icon.png" />
 	</ItemGroup>
 
 </Project>

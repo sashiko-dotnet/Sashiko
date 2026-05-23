@@ -12,6 +12,14 @@ permissions:
 env:
   DOTNET_VERSION: 10.0.x
   NUGET_SOURCE: https://api.nuget.org/v3/index.json
+  RELEASE_BRANCH: master
+
+# NuGet Trusted Publishing should be configured with:
+# Package owner: Sashiko
+# Repository owner: sashiko-dotnet
+# Repository: Sashiko
+# Workflow file: release-nuget.yml
+# Branch: master
 
 jobs:
   publish:
@@ -25,10 +33,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify tag is on master
+      - name: Verify tag is on release branch
         run: |
-          if ! git branch --remote --contains "$GITHUB_SHA" | grep -q "origin/master"; then
-            echo "NuGet packages can only be published from tags that point to master."
+          if ! git branch --remote --contains "$GITHUB_SHA" | grep -q "origin/${RELEASE_BRANCH}$"; then
+            echo "NuGet packages can only be published from tags that point to ${RELEASE_BRANCH}."
             exit 1
           fi
 
@@ -100,7 +108,7 @@ jobs:
         id: nuget-login
         uses: NuGet/login@ebc737b6fc418a6ca0073cf116ec8dc156d8b81e # v1
         with:
-          user: alex98luca
+          user: Sashiko
 
       - name: Publish tagged package
         run: >

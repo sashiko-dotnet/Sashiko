@@ -9,36 +9,16 @@
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.SystemMonitor</PackageId>
 		<Version>0.1.3-alpha</Version>
-		<Authors>Alexandru Luca (alex98luca)</Authors>
 		<Description>
 			Cross-platform system snapshot library for .NET. Provides operating system, CPU,
 			GPU, memory, disk, thermal, and power metrics through a lightweight unified API.
 		</Description>
-		<PackageTags>system monitor; diagnostics; hardware; cpu; memory; sashiko</PackageTags>
-
-		<!-- Links -->
-		<PackageProjectUrl>https://github.com/alex98luca/Sashiko</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/alex98luca/Sashiko</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-
-		<!-- License -->
-		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-
-		<!-- README -->
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<IncludePackageReadmeFile>true</IncludePackageReadmeFile>
-
-		<!-- NuGet Icon -->
-		<PackageIcon>icon.png</PackageIcon>
-
-		<!-- Optional -->
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageTags>$(SashikoSharedPackageTags);system-monitor;diagnostics;hardware;cpu;memory</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="Sashiko.SystemMonitor.Tests" />
 		<None Include="README.md" Pack="true" PackagePath="\" />
-		<None Include="..\assets\sashiko-logo\nuget\sashiko-logo-nuget.png" Pack="true" PackagePath="icon.png" />
 	</ItemGroup>
 
 
