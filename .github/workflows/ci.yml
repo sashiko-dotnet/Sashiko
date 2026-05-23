@@ -13,7 +13,7 @@ permissions:
 
 env:
   DOTNET_VERSION: 10.0.x
-  SONAR_ORGANIZATION: sashiko-dotnet
+  SONAR_ORGANIZATION: alex98luca
   SONAR_PROJECT_KEY: sashiko-dotnet_Sashiko
 
 jobs:
