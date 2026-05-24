@@ -12,6 +12,7 @@ permissions:
 env:
   DOTNET_VERSION: 10.0.x
   NUGET_SOURCE: https://api.nuget.org/v3/index.json
+  NUGET_POLICY_CREATOR: alex98luca
   RELEASE_BRANCH: master
 
 # NuGet Trusted Publishing should be configured with:
@@ -108,7 +109,9 @@ jobs:
         id: nuget-login
         uses: NuGet/login@ebc737b6fc418a6ca0073cf116ec8dc156d8b81e # v1
         with:
-          user: Sashiko
+          # NuGet/login expects the trusted publishing policy creator,
+          # while the policy package owner remains Sashiko.
+          user: ${{ env.NUGET_POLICY_CREATOR }}
 
       - name: Publish tagged package
         run: >
