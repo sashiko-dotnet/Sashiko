@@ -5,6 +5,17 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.3.0] - 2026-09-27
+
+### Added
+- Added embedded name data and generation rules for German (`deu`).
+- Expanded `LanguageId` with `Deu` for German name generation.
+
+### Documentation
+- Updated supported-language documentation and source notes for the expanded major-language coverage.
+
+---
+
 ## [0.2.1] - 2026-08-14
 
 ### Changed

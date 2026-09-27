@@ -1,0 +1,21 @@
+{
+  "GivenNameCountMin": 1,
+  "GivenNameCountMax": 2,
+  "UnisexFirstNameProbability": 0,
+  "UsesPatronymic": false,
+  "PatronymicPatternMale": null,
+  "PatronymicPatternFemale": null,
+  "PatronymicProbability": 0,
+  "UsesMatronymic": false,
+  "MatronymicPatternMale": null,
+  "MatronymicPatternFemale": null,
+  "MatronymicProbability": 0,
+  "UsesDoubleLastName": false,
+  "DoubleLastNameProbability": 0,
+  "UsesGenderedLastNames": false,
+  "Order": "FirstLast",
+  "AllowPrefixes": false,
+  "PrefixProbability": 0,
+  "AllowSuffixes": false,
+  "SuffixProbability": 0
+}

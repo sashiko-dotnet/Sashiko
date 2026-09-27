@@ -5,6 +5,7 @@
 		Arb,
 		Ben,
 		Cmn,
+		Deu,
 		Eng,
 		Fra,
 		Hin,
