@@ -5,6 +5,19 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.4.0] - 2026-11-02
+
+### Added
+- Japanese (`jpn`) name generation with 274 male given names, 264 female given names, and 213 shared surnames.
+- Family-name-first Japanese generation with one given name and one surname.
+- `LanguageId.Jpn`, inserted alphabetically with `Random` remaining last.
+- Japanese source notes documenting Wikidata provenance, CC0 licensing, and ASCII romanization.
+
+### Documentation
+- Clarified that enum numeric values may change between releases and should not be used as persistent language identifiers.
+
+---
+
 ## [0.3.0] - 2026-09-27
 
 ### Added
