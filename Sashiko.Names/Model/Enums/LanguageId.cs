@@ -11,6 +11,7 @@
 		Hin,
 		Isl,
 		Ita,
+		Jpn,
 		Por,
 		Ron,
 		Rus,

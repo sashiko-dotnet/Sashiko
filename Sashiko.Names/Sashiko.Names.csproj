@@ -7,7 +7,7 @@
 
     <!-- NuGet package metadata -->
     <PackageId>Sashiko.Names</PackageId>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <Description>
       Culturally aware person name generator for the Sashiko ecosystem.
       Provides embedded, curated name pools and language-specific generation rules
@@ -30,6 +30,7 @@
   <!-- Include package README in the package. Shared metadata includes the NuGet icon. -->
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Update="Data\jpn\SOURCES.md" Pack="true" PackagePath="Data/jpn/SOURCES.md" />
   </ItemGroup>
 
   <!-- Internal visibility -->

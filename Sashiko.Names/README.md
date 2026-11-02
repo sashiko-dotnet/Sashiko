@@ -103,6 +103,7 @@ var icelandic = service.Generate(
 | Hindi | `hin` | `Hin` |
 | Icelandic | `isl` | `Isl` |
 | Italian | `ita` | `Ita` |
+| Japanese | `jpn` | `Jpn` |
 | Portuguese | `por` | `Por` |
 | Romanian | `ron` | `Ron` |
 | Russian | `rus` | `Rus` |
@@ -111,7 +112,17 @@ var icelandic = service.Generate(
 
 `LanguageId.Random` selects one supported language at generation time.
 
-The supported set includes the top 10 languages by total speaker count plus additional major languages, represented by their ISO 639-3 identifiers.
+Enum members are alphabetical, with `Random` last. Numeric values may change
+between releases; use named members in code and persist their names or ISO 639-3
+identifiers rather than their underlying integers.
+
+Supported languages use ISO 639-3 identifiers and include widely spoken languages alongside additional regional datasets.
+
+Japanese names use ASCII romanization and family-name-first order, for example
+`Tanaka Akira`. Each generated Japanese name contains one given name and one
+surname. The pool contains 274 male given names, 264 female given names, and
+213 surnames. It is a curated starter pool, not a population-frequency model.
+See the [Japanese source notes](Data/jpn/SOURCES.md) for provenance and spelling conventions.
 
 ---
 
