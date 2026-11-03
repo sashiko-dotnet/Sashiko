@@ -40,6 +40,22 @@ namespace Sashiko.Geography.Tests.Data
 			["BoundaryVersion"] = "TEST-2024", ["SourceId"] = "TEST"
 		};
 
+		internal static void AddRomania(Dictionary<string, string> files)
+		{
+			var country = JsonNode.Parse(files[Italy])!;
+			country["Name"] = "Romania";
+			country["IsoAlpha2"] = "RO";
+			country["IsoAlpha3"] = "ROU";
+			country["IsoNumeric"] = "642";
+			files["Countries/RO/country.json"] = country.ToJsonString();
+			Update(files, GeographyRegistry.CoveragePath, node =>
+			{
+				var floor = node["Countries"]![0]!.DeepClone();
+				floor["CountryCode"] = "RO";
+				node["Countries"]!.AsArray().Add(floor);
+			});
+		}
+
 		internal static void AddSubdivision(Dictionary<string, string> files, string id, string? parent = null, long? population = null)
 		{
 			var node = new JsonObject { ["Id"] = id, ["Name"] = id, ["Type"] = "District", ["SourceIds"] = new JsonArray("TEST") };

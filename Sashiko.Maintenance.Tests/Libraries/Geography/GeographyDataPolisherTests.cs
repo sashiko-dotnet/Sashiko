@@ -105,6 +105,50 @@ namespace Sashiko.Maintenance.Tests.Libraries.Geography
 			await Assert.ThrowsAsync<DirectoryNotFoundException>(() => new GeographyDataPolisher().PolishAsync(missing));
 		}
 
+		[Fact]
+		public async Task ReleaseValidation_ShouldBlockUnreviewedSourcesWithoutWriting()
+		{
+			using var data = new DataDirectory();
+			var sourcePath = Path.Combine(data.Root, "Sources/sources.json");
+			var sources = JsonNode.Parse(File.ReadAllText(sourcePath))!.AsArray();
+			foreach (var source in sources)
+				source!["LicenseUrl"] = "https://example.com/reviewed-reuse-terms";
+			var unresolved = sources[0]!["Id"]!.GetValue<string>();
+			sources[0]!.AsObject().Remove("LicenseUrl");
+			File.WriteAllText(sourcePath, sources.ToJsonString());
+			var before = data.Snapshot();
+			var polisher = new GeographyDataPolisher();
+			await polisher.ValidateAsync(data.Root);
+			var error = await Assert.ThrowsAsync<InvalidDataException>(() => polisher.ValidateReleaseAsync(data.Root));
+			Assert.Contains(unresolved, error.Message);
+			Assert.Equal(before, data.Snapshot());
+		}
+
+		[Fact]
+		public async Task ReleaseValidation_ShouldAcceptRecordedReuseTermsWithoutWriting()
+		{
+			using var data = new DataDirectory();
+			var sourcePath = Path.Combine(data.Root, "Sources/sources.json");
+			var sources = JsonNode.Parse(File.ReadAllText(sourcePath))!.AsArray();
+			foreach (var source in sources)
+				source!["LicenseUrl"] = "https://example.com/reviewed-reuse-terms";
+			File.WriteAllText(sourcePath, sources.ToJsonString());
+			var before = data.Snapshot();
+			Assert.Equal(data.Expected, await new GeographyDataPolisher().ValidateReleaseAsync(data.Root));
+			Assert.Equal(before, data.Snapshot());
+		}
+
+		[Fact]
+		public async Task Polish_ShouldRejectDuplicatesInsteadOfSilentlyDroppingEvidence()
+		{
+			using var data = new DataDirectory();
+			data.Edit(Italy, node => node["SourceIds"]!.AsArray().Add(node["SourceIds"]![0]!.DeepClone()));
+			var before = data.Snapshot();
+			Assert.Contains("Duplicate", (await Assert.ThrowsAsync<InvalidDataException>(
+				() => new GeographyDataPolisher().PolishAsync(data.Root))).Message);
+			Assert.Equal(before, data.Snapshot());
+		}
+
 		private sealed class DataDirectory : IDisposable
 		{
 			internal GeographyPolishResult Expected => new(new GeographyService().Countries.Count, new GeographyService().Subdivisions.Count, new GeographyService().Cities.Count);

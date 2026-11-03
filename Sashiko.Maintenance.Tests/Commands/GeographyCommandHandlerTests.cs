@@ -6,6 +6,20 @@ namespace Sashiko.Maintenance.Tests.Commands
 	public sealed class GeographyCommandHandlerTests
 	{
 		[Fact]
+		public async Task DispatchAsync_ReleaseValidation_ShouldUseOnlyTheReleaseGate()
+		{
+			var called = false;
+			var handler = new GeographyCommandHandler
+			{
+				ReleaseHook = () => { called = true; return Task.CompletedTask; },
+				ValidateHook = () => throw new InvalidOperationException("Expected release validation."),
+				PolishHook = () => throw new InvalidOperationException("Release validation must not write.")
+			};
+			await handler.DispatchAsync("validate-release");
+			Assert.True(called);
+		}
+
+		[Fact]
 		public async Task DispatchAsync_Validate_ShouldInvokeOnlyValidation()
 		{
 			var called = false;
