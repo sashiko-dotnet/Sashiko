@@ -1,0 +1,16 @@
+{
+  "Id": "IT-75",
+  "Name": "Puglia",
+  "Type": "Region",
+  "Iso3166_2": "IT-75",
+  "SourceIds": [
+    "ISO-3166"
+  ],
+  "Population": {
+    "Value": 3890661,
+    "ReferenceDate": "2024-01-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "IT-2024",
+    "SourceId": "EUROSTAT-DEMO_R_PJANAGGR3-2024"
+  }
+}

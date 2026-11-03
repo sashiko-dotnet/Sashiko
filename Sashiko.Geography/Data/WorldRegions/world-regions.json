@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Africa",
+    "M49Code": "002"
+  },
+  {
+    "Name": "Oceania",
+    "M49Code": "009"
+  },
+  {
+    "Name": "Americas",
+    "M49Code": "019"
+  },
+  {
+    "Name": "Asia",
+    "M49Code": "142"
+  },
+  {
+    "Name": "Europe",
+    "M49Code": "150"
+  }
+]

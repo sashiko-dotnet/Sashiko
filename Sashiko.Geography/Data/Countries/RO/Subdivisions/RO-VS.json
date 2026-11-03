@@ -1,0 +1,16 @@
+{
+  "Id": "RO-VS",
+  "Name": "Vaslui",
+  "Type": "County",
+  "Iso3166_2": "RO-VS",
+  "SourceIds": [
+    "ISO-3166"
+  ],
+  "Population": {
+    "Value": 374700,
+    "ReferenceDate": "2021-12-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "RO-CENSUS-2021",
+    "SourceId": "RO-RPL2021-TABLE-1.22"
+  }
+}

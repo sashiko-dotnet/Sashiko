@@ -152,6 +152,9 @@ coverage*.json
 coverage*.xml
 coverage*.info
 
+# Geography coverage policy is source data, not a coverage report.
+!Sashiko.Geography/Data/Coverage/coverage-baseline.json
+
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml

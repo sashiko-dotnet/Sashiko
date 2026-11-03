@@ -39,6 +39,7 @@ The tool uses a simple two‑level command structure:
 
 | Category | Description |
 |----------|-------------|
+| `geography` | Validates and polishes isolated country data bundles |
 | `languages` | Maintains the embedded language registry |
 | `names` | Maintains the embedded name registries |
 
@@ -46,6 +47,13 @@ The tool uses a simple two‑level command structure:
 | Command | Description |
 |---------|-------------|
 | `update` | Downloads and regenerates the embedded `languages.json` file |
+
+#### `geography` Commands
+| Command | Description |
+|---------|-------------|
+| `polish` | Normalizes, validates, and sorts every ISO country bundle |
+| `validate` | Validates the current geography files without writing |
+| `validate-release` | Also requires documented source reuse terms before publication |
 
 #### `names` Commands
 | Command | Description |
@@ -71,6 +79,22 @@ dotnet run --project Sashiko.Maintenance -- names polish
 This command reads every `names.json` file under the `Sashiko.Names/Data`
 folder, trims values, removes blank or duplicate entries, sorts each array
 alphabetically, and writes the polished data back as clean indented JSON.
+
+```bash
+dotnet run --project Sashiko.Maintenance -- geography polish
+```
+
+This command reads the flat country partitions beneath
+`Sashiko.Geography/Data/Countries/{ISO_ALPHA2}`, loading `country.json`
+and the individual `Subdivisions/{id}.json` and `Cities/{id}.json` records.
+It uses the package's registry
+loaders, schema validator, and semantic rules to validate all proposed changes
+before writing. It normalizes entity records and never changes coverage floors.
+
+Run `dotnet run --project Sashiko.Maintenance -- geography validate` for a
+read-only check. Both commands report source paths for schema, ownership,
+identifier, population, language, and coverage errors. Use `geography validate-release`
+before publication to reject source entries whose reuse terms still need review.
 
 ---
 

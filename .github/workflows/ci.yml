@@ -90,6 +90,7 @@ jobs:
           dotnet pack Sashiko.SystemMonitor/Sashiko.SystemMonitor.csproj --configuration Release --no-build --output artifacts/packages
           dotnet pack Sashiko.Languages/Sashiko.Languages.csproj --configuration Release --no-build --output artifacts/packages
           dotnet pack Sashiko.Names/Sashiko.Names.csproj --configuration Release --no-build --output artifacts/packages
+          dotnet pack Sashiko.Geography/Sashiko.Geography.csproj --configuration Release --no-build --output artifacts/packages
 
       - name: Upload package artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<ProjectReference Include="..\Sashiko.Geography\Sashiko.Geography.csproj" />
     <ProjectReference Include="..\Sashiko.Languages\Sashiko.Languages.csproj" />
     <ProjectReference Include="..\Sashiko.Names\Sashiko.Names.csproj" />
   </ItemGroup>

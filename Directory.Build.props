@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <IsSashikoPublicPackage>false</IsSashikoPublicPackage>
-    <IsSashikoPublicPackage Condition="'$(MSBuildProjectName)' == 'Sashiko.Core' Or '$(MSBuildProjectName)' == 'Sashiko.Validation' Or '$(MSBuildProjectName)' == 'Sashiko.Registries' Or '$(MSBuildProjectName)' == 'Sashiko.SystemMonitor' Or '$(MSBuildProjectName)' == 'Sashiko.Languages' Or '$(MSBuildProjectName)' == 'Sashiko.Names'">true</IsSashikoPublicPackage>
+    <IsSashikoPublicPackage Condition="'$(MSBuildProjectName)' == 'Sashiko.Core' Or '$(MSBuildProjectName)' == 'Sashiko.Validation' Or '$(MSBuildProjectName)' == 'Sashiko.Registries' Or '$(MSBuildProjectName)' == 'Sashiko.SystemMonitor' Or '$(MSBuildProjectName)' == 'Sashiko.Languages' Or '$(MSBuildProjectName)' == 'Sashiko.Names' Or '$(MSBuildProjectName)' == 'Sashiko.Geography'">true</IsSashikoPublicPackage>
     <SashikoSharedPackageTags>sashiko;dotnet;csharp;open-source;modular-architecture</SashikoSharedPackageTags>
   </PropertyGroup>
 

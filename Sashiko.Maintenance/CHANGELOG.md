@@ -7,6 +7,13 @@ The maintenance tool is not versioned or published as a NuGet package.
 
 ---
 
+## Unreleased
+### Added
+- Geography validate, polish, and validate-release commands using the shared offline importer.
+- Flat country partitions, explicit hierarchy references, source catalogs, and comparable-population validation.
+- Deterministic polishing and protection against writes when proposed data is invalid.
+- A publication gate for source entries whose reuse terms still need documented review.
+
 ## 2026-08-14
 ### Changed
 - Updated the internal Sashiko.Core dependency to `0.4.1` so solution restore stays aligned with the latest registry packages.

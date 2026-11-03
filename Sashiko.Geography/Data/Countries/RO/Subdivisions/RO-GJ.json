@@ -1,0 +1,16 @@
+{
+  "Id": "RO-GJ",
+  "Name": "Gorj",
+  "Type": "County",
+  "Iso3166_2": "RO-GJ",
+  "SourceIds": [
+    "ISO-3166"
+  ],
+  "Population": {
+    "Value": 314685,
+    "ReferenceDate": "2021-12-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "RO-CENSUS-2021",
+    "SourceId": "RO-RPL2021-TABLE-1.22"
+  }
+}

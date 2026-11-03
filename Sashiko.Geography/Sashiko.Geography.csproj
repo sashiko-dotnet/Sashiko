@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- NuGet package metadata -->
+    <PackageId>Sashiko.Geography</PackageId>
+    <Version>0.1.0</Version>
+    <Description>
+      Embedded geography registry for the Sashiko ecosystem.
+      Provides immutable country, subdivision, city, population, and world-region data
+      with locally curated ISO, UN M49, and ISO 639 language references.
+    </Description>
+    <PackageTags>$(SashikoSharedPackageTags);geography;countries;cities;iso3166;un-m49;registry</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sashiko.Languages" Version="0.1.2" />
+    <PackageReference Include="Sashiko.Registries" Version="0.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\**\*.json" LogicalName="%(Identity)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="ARCHITECTURE.md" Pack="true" PackagePath="ARCHITECTURE.md" />
+    <None Include="Data\SOURCES.md" Pack="true" PackagePath="Data\SOURCES.md" />
+    <None Include="Data\CONTRIBUTING.md" Pack="true" PackagePath="Data\CONTRIBUTING.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Sashiko.Geography.Tests" />
+    <InternalsVisibleTo Include="Sashiko.Maintenance" />
+  </ItemGroup>
+
+</Project>

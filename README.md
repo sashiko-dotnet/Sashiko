@@ -29,6 +29,7 @@ The Sashiko GitHub and NuGet organizations provide project-level ownership, disc
 | **Sashiko.SystemMonitor** | Cross-platform hardware and operating-system snapshot utilities | Released |
 | **Sashiko.Languages** | Embedded ISO 639 language registry with strongly typed lookup APIs | Released |
 | **Sashiko.Names** | Embedded, culturally aware person name generator with curated language data | Released |
+| **Sashiko.Geography** | Embedded countries, subdivisions, cities, coordinates, and population snapshots | In development |
 | **Sashiko.Maintenance** | Internal tooling for maintaining embedded package data | Internal |
 
 ---
@@ -89,11 +90,10 @@ Sashiko packages should be:
 
 ## 🗺️ Roadmap
 
-The current focus is simple: keep the existing packages clean, documented, tested, and easy to release.
+The current focus is building a small, reliable geography registry on top of the existing language and registry packages.
 
 Future package families may include:
 
-- **Sashiko.Geography** — countries, regions, cities, coordinates, and geopolitical data
 - **Sashiko.People** — richer people generation, demographics, development, and life modeling
 - **Sashiko.Sports** — reusable sports simulation primitives and domain models
 - **Sashiko.Economics** — economic indicators, markets, organizations, and development systems
@@ -108,6 +108,7 @@ The long-term goal is to grow Sashiko one carefully designed package at a time, 
 Package-level documentation lives inside each package folder:
 
 - [Sashiko.Core](./Sashiko.Core/README.md)
+- [Sashiko.Geography](./Sashiko.Geography/README.md)
 - [Sashiko.Languages](./Sashiko.Languages/README.md)
 - [Sashiko.Names](./Sashiko.Names/README.md)
 - [Sashiko.Registries](./Sashiko.Registries/README.md)

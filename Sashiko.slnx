@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="Sashiko.Core.Tests/Sashiko.Core.Tests.csproj" />
   <Project Path="Sashiko.Core/Sashiko.Core.csproj" />
+  <Project Path="Sashiko.Geography.Tests/Sashiko.Geography.Tests.csproj" />
+  <Project Path="Sashiko.Geography/Sashiko.Geography.csproj" />
   <Project Path="Sashiko.Languages.Tests/Sashiko.Languages.Tests.csproj" />
   <Project Path="Sashiko.Languages/Sashiko.Languages.csproj" />
   <Project Path="Sashiko.Maintenance.Tests/Sashiko.Maintenance.Tests.csproj" />

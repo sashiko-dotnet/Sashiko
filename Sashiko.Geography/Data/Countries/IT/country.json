@@ -1,0 +1,24 @@
+{
+  "Name": "Italy",
+  "IsoAlpha2": "IT",
+  "IsoAlpha3": "ITA",
+  "IsoNumeric": "380",
+  "M49RegionCode": "150",
+  "CapitalCityIds": [
+    "IT-ISTAT-058091"
+  ],
+  "OfficialLanguageCodes": [
+    "ita"
+  ],
+  "SourceIds": [
+    "ISO-3166",
+    "UN-M49"
+  ],
+  "Population": {
+    "Value": 58971230,
+    "ReferenceDate": "2024-01-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "IT-2024",
+    "SourceId": "EUROSTAT-DEMO_GIND-2024"
+  }
+}

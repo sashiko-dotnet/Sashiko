@@ -1,0 +1,16 @@
+{
+  "Id": "RO-BC",
+  "Name": "Bacău",
+  "Type": "County",
+  "Iso3166_2": "RO-BC",
+  "SourceIds": [
+    "ISO-3166"
+  ],
+  "Population": {
+    "Value": 601387,
+    "ReferenceDate": "2021-12-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "RO-CENSUS-2021",
+    "SourceId": "RO-RPL2021-TABLE-1.22"
+  }
+}

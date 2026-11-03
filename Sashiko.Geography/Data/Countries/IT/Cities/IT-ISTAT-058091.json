@@ -1,0 +1,15 @@
+{
+  "Id": "IT-ISTAT-058091",
+  "Name": "Roma",
+  "SubdivisionId": "IT-62",
+  "SourceIds": [
+    "EUROSTAT-URB_CPOP1-2024"
+  ],
+  "Population": {
+    "Value": 2751747,
+    "ReferenceDate": "2024-01-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "IT-2024",
+    "SourceId": "EUROSTAT-URB_CPOP1-2024"
+  }
+}

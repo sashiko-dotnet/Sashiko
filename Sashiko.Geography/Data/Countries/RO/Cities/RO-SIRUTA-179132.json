@@ -1,0 +1,15 @@
+{
+  "Id": "RO-SIRUTA-179132",
+  "Name": "București",
+  "SubdivisionId": "RO-B",
+  "SourceIds": [
+    "RO-RPL2021-TABLE-1.22"
+  ],
+  "Population": {
+    "Value": 1716961,
+    "ReferenceDate": "2021-12-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "RO-CENSUS-2021",
+    "SourceId": "RO-RPL2021-TABLE-1.22"
+  }
+}

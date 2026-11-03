@@ -1,0 +1,16 @@
+{
+  "Id": "IT-57",
+  "Name": "Marche",
+  "Type": "Region",
+  "Iso3166_2": "IT-57",
+  "SourceIds": [
+    "ISO-3166"
+  ],
+  "Population": {
+    "Value": 1482746,
+    "ReferenceDate": "2024-01-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "IT-2024",
+    "SourceId": "EUROSTAT-DEMO_R_PJANAGGR3-2024"
+  }
+}

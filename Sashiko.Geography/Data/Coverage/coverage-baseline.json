@@ -1,0 +1,40 @@
+{
+  "WorldRegions": [
+    {
+      "M49Code": "002",
+      "MinimumSupportedCountryCount": 0
+    },
+    {
+      "M49Code": "009",
+      "MinimumSupportedCountryCount": 0
+    },
+    {
+      "M49Code": "019",
+      "MinimumSupportedCountryCount": 0
+    },
+    {
+      "M49Code": "142",
+      "MinimumSupportedCountryCount": 0
+    },
+    {
+      "M49Code": "150",
+      "MinimumSupportedCountryCount": 2
+    }
+  ],
+  "Countries": [
+    {
+      "CountryCode": "IT",
+      "MinimumSubdivisionCount": 20,
+      "MinimumCityCount": 1,
+      "MinimumCityPopulationCoverage": 0.04,
+      "MinimumSubdivisionPopulationCoverage": 1
+    },
+    {
+      "CountryCode": "RO",
+      "MinimumSubdivisionCount": 42,
+      "MinimumCityCount": 1,
+      "MinimumCityPopulationCoverage": 0.09,
+      "MinimumSubdivisionPopulationCoverage": 1
+    }
+  ]
+}

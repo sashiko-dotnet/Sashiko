@@ -1,0 +1,24 @@
+{
+  "Name": "Romania",
+  "IsoAlpha2": "RO",
+  "IsoAlpha3": "ROU",
+  "IsoNumeric": "642",
+  "M49RegionCode": "150",
+  "CapitalCityIds": [
+    "RO-SIRUTA-179132"
+  ],
+  "OfficialLanguageCodes": [
+    "ron"
+  ],
+  "SourceIds": [
+    "ISO-3166",
+    "UN-M49"
+  ],
+  "Population": {
+    "Value": 19053815,
+    "ReferenceDate": "2021-12-01",
+    "Definition": "usual-residents",
+    "BoundaryVersion": "RO-CENSUS-2021",
+    "SourceId": "RO-RPL2021-TABLE-1.22"
+  }
+}

@@ -37,6 +37,7 @@ namespace Sashiko.Maintenance.Tests
 				var output = sw.ToString();
 				Assert.Contains("Sashiko Maintenance Tool", output);
 				Assert.Contains("Usage:", output);
+				Assert.Contains("geography polish", output);
 				Assert.Contains("languages update", output);
 				Assert.Contains("names polish", output);
 			}
