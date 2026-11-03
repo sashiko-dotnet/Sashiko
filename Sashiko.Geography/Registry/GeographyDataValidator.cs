@@ -9,6 +9,30 @@ namespace Sashiko.Geography.Registry
 	{
 		internal static IReadOnlyDictionary<string, CountryCoverage> Validate(GeographyRegistry registry)
 		{
+			ValidateCatalogs(registry);
+			var sources = registry.DataSources.Select(source => source.Id).ToHashSet(StringComparer.Ordinal);
+			Require(registry.Countries.Count > 0, "Countries", "$", "At least one country is required.");
+			Unique(registry.Countries.Select(country => country.IsoAlpha3), "Countries", "IsoAlpha3");
+			Unique(registry.Countries.Select(country => country.IsoNumeric), "Countries", "IsoNumeric");
+			Unique(registry.Countries.Select(country => country.Name), "Countries", "Name");
+			Unique(registry.Subdivisions.Where(item => item.Iso3166_2 is not null).Select(item => item.Iso3166_2!), "Subdivisions", "Iso3166_2");
+			Unique(registry.Cities.Where(city => city.UnLocode is not null).Select(city => city.UnLocode!), "Cities", "UnLocode");
+			var countries = registry.Countries.ToDictionary(country => country.IsoAlpha2);
+			var subdivisions = registry.Subdivisions.ToDictionary(item => item.Id);
+			var cities = registry.Cities.ToDictionary(city => city.Id);
+			ValidateCountries(registry, cities, sources);
+			ValidateSubdivisions(registry, countries, subdivisions, sources);
+			ValidateHierarchy(subdivisions, registry.Paths);
+			ValidateCities(registry, countries, subdivisions, sources);
+			var populations = new GeographyPopulationAnalysis(registry);
+			populations.ValidateTotals();
+			ValidateCoverage(registry, populations);
+			return new System.Collections.ObjectModel.ReadOnlyDictionary<string, CountryCoverage>(
+				registry.Countries.ToDictionary(country => country.IsoAlpha2, populations.Coverage));
+		}
+
+		private static void ValidateCatalogs(GeographyRegistry registry)
+		{
 			UniqueSorted(registry.WorldRegions.Select(region => region.M49Code), GeographyRegistry.RegionsPath, "M49Code");
 			foreach (var region in registry.WorldRegions)
 			{
@@ -22,25 +46,21 @@ namespace Sashiko.Geography.Registry
 				Require(source.Id == source.Id.ToUpperInvariant(), GeographyRegistry.SourcesPath, "Id", "Source IDs must be uppercase.");
 				Text(source.Title, GeographyRegistry.SourcesPath, "Title");
 				Text(source.Attribution, GeographyRegistry.SourcesPath, "Attribution");
+				Text(source.Url, GeographyRegistry.SourcesPath, "Url");
+				if (source.LicenseUrl is not null) Text(source.LicenseUrl, GeographyRegistry.SourcesPath, "LicenseUrl");
 				Require(WebUrl(source.Url) && (source.LicenseUrl is null || WebUrl(source.LicenseUrl)), GeographyRegistry.SourcesPath, "Url", "Expected absolute HTTP(S) source and license URLs.");
 			}
-			var sources = registry.DataSources.Select(source => source.Id).ToHashSet(StringComparer.Ordinal);
-			Require(registry.Countries.Count > 0, "Countries", "$", "At least one country is required.");
-			Unique(registry.Countries.Select(country => country.IsoAlpha3), "Countries", "IsoAlpha3");
-			Unique(registry.Countries.Select(country => country.IsoNumeric), "Countries", "IsoNumeric");
-			Unique(registry.Countries.Select(country => country.Name), "Countries", "Name");
-			Unique(registry.Subdivisions.Where(item => item.Iso3166_2 is not null).Select(item => item.Iso3166_2!), "Subdivisions", "Iso3166_2");
-			Unique(registry.Cities.Where(city => city.UnLocode is not null).Select(city => city.UnLocode!), "Cities", "UnLocode");
-			var countries = registry.Countries.ToDictionary(country => country.IsoAlpha2);
-			var subdivisions = registry.Subdivisions.ToDictionary(item => item.Id);
-			var cities = registry.Cities.ToDictionary(city => city.Id);
-			var languages = new LanguageService();
+		}
 
+		private static void ValidateCountries(GeographyRegistry registry, IReadOnlyDictionary<string, City> cities, ISet<string> sources)
+		{
+			var languages = new LanguageService();
 			foreach (var country in registry.Countries)
 			{
 				var path = registry.Paths[country.IsoAlpha2];
-				Require(Alpha2().IsMatch(country.IsoAlpha2) && Alpha3().IsMatch(country.IsoAlpha3)
-					&& NumericCode().IsMatch(country.IsoNumeric), path, "IsoAlpha2", "Invalid ISO code format.");
+				Require(Alpha2().IsMatch(country.IsoAlpha2), path, "IsoAlpha2", "Expected two uppercase letters.");
+				Require(Alpha3().IsMatch(country.IsoAlpha3), path, "IsoAlpha3", "Expected three uppercase letters.");
+				Require(NumericCode().IsMatch(country.IsoNumeric), path, "IsoNumeric", "Expected three digits.");
 				if (Enum.TryParse<CountryId>(country.IsoAlpha2, true, out var declared) && Enum.IsDefined(declared))
 					Require(((int)declared).ToString("D3", System.Globalization.CultureInfo.InvariantCulture) == country.IsoNumeric,
 						path, "IsoNumeric", "Value conflicts with the locally declared CountryId.");
@@ -62,6 +82,11 @@ namespace Sashiko.Geography.Registry
 					Require(cities.TryGetValue(capital, out var city) && city.CountryCode == country.IsoAlpha2,
 						path, "CapitalCityIds", $"Unknown or foreign city '{capital}'.");
 			}
+		}
+
+		private static void ValidateSubdivisions(GeographyRegistry registry, IReadOnlyDictionary<string, Country> countries,
+			IReadOnlyDictionary<string, Subdivision> subdivisions, ISet<string> sources)
+		{
 			foreach (var subdivision in registry.Subdivisions)
 			{
 				var path = registry.Paths[subdivision.Id];
@@ -75,7 +100,11 @@ namespace Sashiko.Geography.Registry
 				References(subdivision.SourceIds, sources, path);
 				Population(subdivision.Population, sources, path);
 			}
-			ValidateHierarchy(subdivisions, registry.Paths);
+		}
+
+		private static void ValidateCities(GeographyRegistry registry, IReadOnlyDictionary<string, Country> countries,
+			IReadOnlyDictionary<string, Subdivision> subdivisions, ISet<string> sources)
+		{
 			foreach (var city in registry.Cities)
 			{
 				var path = registry.Paths[city.Id];
@@ -92,11 +121,6 @@ namespace Sashiko.Geography.Registry
 				References(city.SourceIds, sources, path);
 				Population(city.Population, sources, path);
 			}
-			var populations = new GeographyPopulationAnalysis(registry);
-			populations.ValidateTotals();
-			ValidateCoverage(registry, populations);
-			return new System.Collections.ObjectModel.ReadOnlyDictionary<string, CountryCoverage>(
-				registry.Countries.ToDictionary(country => country.IsoAlpha2, populations.Coverage));
 		}
 
 		private static void ValidateHierarchy(IReadOnlyDictionary<string, Subdivision> subdivisions, IReadOnlyDictionary<string, string> paths)

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Sashiko.Geography.Model.Data;
 using Sashiko.Validation.Schema.Attributes;
 
 namespace Sashiko.Geography.Model
@@ -33,18 +34,17 @@ namespace Sashiko.Geography.Model
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public PopulationSnapshot? Population { get; }
 
-		[JsonConstructor]
-		internal Country(string name, string isoAlpha2, string isoAlpha3, string isoNumeric, string m49RegionCode, IReadOnlyList<string> capitalCityIds, IReadOnlyList<string> officialLanguageCodes, IReadOnlyList<string> sourceIds, PopulationSnapshot? population)
+		internal Country(CountryData data)
 		{
-			Name = name;
-			IsoAlpha2 = isoAlpha2;
-			IsoAlpha3 = isoAlpha3;
-			IsoNumeric = isoNumeric;
-			M49RegionCode = m49RegionCode;
-			CapitalCityIds = capitalCityIds.ToList().AsReadOnly();
-			OfficialLanguageCodes = officialLanguageCodes.ToList().AsReadOnly();
-			SourceIds = sourceIds.ToList().AsReadOnly();
-			Population = population;
+			Name = data.Name;
+			IsoAlpha2 = data.IsoAlpha2;
+			IsoAlpha3 = data.IsoAlpha3;
+			IsoNumeric = data.IsoNumeric;
+			M49RegionCode = data.M49RegionCode;
+			CapitalCityIds = data.CapitalCityIds.ToList().AsReadOnly();
+			OfficialLanguageCodes = data.OfficialLanguageCodes.ToList().AsReadOnly();
+			SourceIds = data.SourceIds.ToList().AsReadOnly();
+			Population = PopulationSnapshot.FromData(data.Population);
 		}
 	}
 }

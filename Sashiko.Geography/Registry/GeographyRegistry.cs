@@ -59,9 +59,7 @@ namespace Sashiko.Geography.Registry
 				{
 					var data = normalizer.Normalize(Read<CountryData>(files, path));
 					Add(path, parts[1], data.IsoAlpha2, data, documents, paths);
-					countries.Add(new Country(data.Name, data.IsoAlpha2, data.IsoAlpha3, data.IsoNumeric,
-						data.M49RegionCode, data.CapitalCityIds, data.OfficialLanguageCodes, data.SourceIds,
-						GeographyDataNormalizer.Snapshot(data.Population)));
+					countries.Add(new Country(data));
 				}
 				else if (parts.Length == 4 && parts[3].EndsWith(".json", StringComparison.Ordinal))
 				{
@@ -70,8 +68,7 @@ namespace Sashiko.Geography.Registry
 					{
 						var data = normalizer.Normalize(Read<SubdivisionData>(files, path));
 						Add(path, fileId, data.Id, data, documents, paths);
-						subdivisions.Add(new Subdivision(data.Id, parts[1], data.Name, data.Type,
-							data.ParentId, data.Iso3166_2, data.SourceIds, GeographyDataNormalizer.Snapshot(data.Population)));
+						subdivisions.Add(new Subdivision(data, parts[1]));
 					}
 					else if (parts[2] == "Cities")
 					{
@@ -86,10 +83,8 @@ namespace Sashiko.Geography.Registry
 			Countries = countries.OrderBy(country => country.IsoAlpha2, StringComparer.Ordinal).ToList().AsReadOnly();
 			Subdivisions = subdivisions.OrderBy(subdivision => subdivision.Id, StringComparer.Ordinal).ToList().AsReadOnly();
 			var capitals = countries.ToDictionary(country => country.IsoAlpha2, country => country.CapitalCityIds.ToHashSet(StringComparer.Ordinal));
-			Cities = cityRecords.Select(record => new City(record.Data.Id, record.Data.Name, record.Country,
-				record.Data.SubdivisionId, record.Data.Location,
-				capitals.TryGetValue(record.Country, out var ids) && ids.Contains(record.Data.Id),
-				record.Data.UnLocode, record.Data.SourceIds, GeographyDataNormalizer.Snapshot(record.Data.Population)))
+			Cities = cityRecords.Select(record => new City(record.Data, record.Country,
+				capitals.TryGetValue(record.Country, out var ids) && ids.Contains(record.Data.Id)))
 				.OrderBy(city => city.Id, StringComparer.Ordinal).ToList().AsReadOnly();
 			Documents = new ReadOnlyDictionary<string, object>(documents);
 			Paths = new ReadOnlyDictionary<string, string>(paths);

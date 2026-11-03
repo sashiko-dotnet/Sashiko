@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Sashiko.Geography.Model.Data;
 using Sashiko.Validation.Schema.Attributes;
 
 namespace Sashiko.Geography.Model
@@ -32,17 +33,16 @@ namespace Sashiko.Geography.Model
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public PopulationSnapshot? Population { get; }
 
-		[JsonConstructor]
-		internal Subdivision(string id, string countryCode, string name, string type, string? parentId, string? iso3166_2, IReadOnlyList<string> sourceIds, PopulationSnapshot? population)
+		internal Subdivision(SubdivisionData data, string countryCode)
 		{
-			Id = id;
+			Id = data.Id;
 			CountryCode = countryCode;
-			Name = name;
-			Type = type;
-			ParentId = parentId;
-			Iso3166_2 = iso3166_2;
-			SourceIds = sourceIds.ToList().AsReadOnly();
-			Population = population;
+			Name = data.Name;
+			Type = data.Type;
+			ParentId = data.ParentId;
+			Iso3166_2 = data.Iso3166_2;
+			SourceIds = data.SourceIds.ToList().AsReadOnly();
+			Population = PopulationSnapshot.FromData(data.Population);
 		}
 	}
 }

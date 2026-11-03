@@ -56,10 +56,6 @@ namespace Sashiko.Geography.Registry
 			};
 		}
 
-		internal static PopulationSnapshot? Snapshot(PopulationData? data) => data is null ? null
-			: new(data.Value, DateOnly.ParseExact(data.ReferenceDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-				data.Definition, data.BoundaryVersion, data.SourceId);
-
 		private IReadOnlyList<string> Values(IReadOnlyList<string>? values, string property, bool upper = false, bool lower = false)
 		{
 			if (values is null) throw Error(property, "An array is required.");

@@ -1,10 +1,16 @@
 using System.Text.Json.Serialization;
+using System.Globalization;
+using Sashiko.Geography.Model.Data;
 using Sashiko.Validation.Schema.Attributes;
 
 namespace Sashiko.Geography.Model
 {
 	public sealed record PopulationSnapshot
 	{
+		internal static PopulationSnapshot? FromData(PopulationData? data) => data is null ? null
+			: new(data.Value, DateOnly.ParseExact(data.ReferenceDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+				data.Definition, data.BoundaryVersion, data.SourceId);
+
 		[Required]
 		public long Value { get; }
 
