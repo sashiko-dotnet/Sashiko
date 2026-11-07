@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "AFRICA",
+    "Name": "Africa",
+    "SourceIds": [
+      "UN-M49"
+    ]
+  },
+  {
+    "Id": "AMERICAS",
+    "Name": "Americas",
+    "SourceIds": [
+      "UN-M49"
+    ]
+  },
+  {
+    "Id": "ASIA",
+    "Name": "Asia",
+    "SourceIds": [
+      "UN-M49"
+    ]
+  },
+  {
+    "Id": "EUROPE",
+    "Name": "Europe",
+    "SourceIds": [
+      "UN-M49"
+    ]
+  },
+  {
+    "Id": "OCEANIA",
+    "Name": "Oceania",
+    "SourceIds": [
+      "UN-M49"
+    ]
+  }
+]

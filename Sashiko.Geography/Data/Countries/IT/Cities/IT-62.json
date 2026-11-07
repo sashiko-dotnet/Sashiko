@@ -1,0 +1,11 @@
+[
+  {
+    "Id": "IT-ROMA",
+    "Name": "Roma",
+    "CountryId": "IT",
+    "SourceIds": [
+      "EUROSTAT-URB_CPOP1-2024"
+    ],
+    "RegionId": "IT-62"
+  }
+]

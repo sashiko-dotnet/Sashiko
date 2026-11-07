@@ -1,0 +1,28 @@
+[
+  {
+    "Id": "EUROSTAT-URB_CPOP1-2024",
+    "Title": "Eurostat urb_cpop1, DE1001V, Roma IT001C, 1 January 2024",
+    "Url": "https://ec.europa.eu/eurostat/databrowser/view/urb_cpop1/default/table",
+    "Attribution": "Source: Eurostat, urb_cpop1, DE1001V, IT001C, 2024. Normalized by Sashiko. Eurostat is not responsible for these modifications.",
+    "LicenseUrl": "https://ec.europa.eu/eurostat/help/copyright-notice"
+  },
+  {
+    "Id": "ISO-3166",
+    "Title": "ISO 3166 country and principal subdivision codes",
+    "Url": "https://www.iso.org/iso-3166-country-codes.html",
+    "Attribution": "ISO 3166 codes. ISO permits free use of its country codes. Names and associations are curated locally; Sashiko is not an official ISO registry.",
+    "LicenseUrl": "https://www.iso.org/iso-3166-country-codes.html"
+  },
+  {
+    "Id": "RO-RPL2021-TABLE-1.22",
+    "Title": "Romanian 2021 census, definitive table 1.22, 1 December 2021",
+    "Url": "https://www.recensamantromania.ro/rezultate-rpl-2021/rezultate-definitive/",
+    "Attribution": "Source: Romanian National Institute of Statistics, RPL 2021, definitive table 1.22. Reuse terms must be documented before publication."
+  },
+  {
+    "Id": "UN-M49",
+    "Title": "United Nations M49 geographic regions",
+    "Url": "https://unstats.un.org/unsd/methodology/m49/",
+    "Attribution": "United Nations Statistics Division, M49. Reuse terms must be documented before publication."
+  }
+]

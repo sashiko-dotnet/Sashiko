@@ -29,6 +29,7 @@ The Sashiko GitHub and NuGet organizations provide project-level ownership, disc
 | **Sashiko.SystemMonitor** | Cross-platform hardware and operating-system snapshot utilities | Released |
 | **Sashiko.Languages** | Embedded ISO 639 language registry with strongly typed lookup APIs | Released |
 | **Sashiko.Names** | Embedded, culturally aware person name generator with curated language data | Released |
+| **Sashiko.Geography** | Small world-region, country, region and city registry with trusted embedded loading | In development |
 | **Sashiko.Maintenance** | Internal tooling for maintaining embedded package data | Internal |
 
 ---
@@ -108,6 +109,7 @@ The long-term goal is to grow Sashiko one carefully designed package at a time, 
 Package-level documentation lives inside each package folder:
 
 - [Sashiko.Core](./Sashiko.Core/README.md)
+- [Sashiko.Geography](./Sashiko.Geography/README.md)
 - [Sashiko.Languages](./Sashiko.Languages/README.md)
 - [Sashiko.Names](./Sashiko.Names/README.md)
 - [Sashiko.Registries](./Sashiko.Registries/README.md)

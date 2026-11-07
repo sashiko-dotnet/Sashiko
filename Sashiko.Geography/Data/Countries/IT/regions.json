@@ -1,0 +1,162 @@
+[
+  {
+    "Id": "IT-21",
+    "Name": "Piemonte",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-23",
+    "Name": "Valle d'Aosta",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-25",
+    "Name": "Lombardia",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-32",
+    "Name": "Trentino-Alto Adige",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-34",
+    "Name": "Veneto",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-36",
+    "Name": "Friuli-Venezia Giulia",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-42",
+    "Name": "Liguria",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-45",
+    "Name": "Emilia-Romagna",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-52",
+    "Name": "Toscana",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-55",
+    "Name": "Umbria",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-57",
+    "Name": "Marche",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-62",
+    "Name": "Lazio",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-65",
+    "Name": "Abruzzo",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-67",
+    "Name": "Molise",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-72",
+    "Name": "Campania",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-75",
+    "Name": "Puglia",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-77",
+    "Name": "Basilicata",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-78",
+    "Name": "Calabria",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-82",
+    "Name": "Sicilia",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "IT-88",
+    "Name": "Sardegna",
+    "CountryId": "IT",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  }
+]

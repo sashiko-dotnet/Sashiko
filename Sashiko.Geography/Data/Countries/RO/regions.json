@@ -1,0 +1,338 @@
+[
+  {
+    "Id": "RO-AB",
+    "Name": "Alba",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-AG",
+    "Name": "Argeș",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-AR",
+    "Name": "Arad",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-B",
+    "Name": "București",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BC",
+    "Name": "Bacău",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BH",
+    "Name": "Bihor",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BN",
+    "Name": "Bistrița-Năsăud",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BR",
+    "Name": "Brăila",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BT",
+    "Name": "Botoșani",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BV",
+    "Name": "Brașov",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-BZ",
+    "Name": "Buzău",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-CJ",
+    "Name": "Cluj",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-CL",
+    "Name": "Călărași",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-CS",
+    "Name": "Caraș-Severin",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-CT",
+    "Name": "Constanța",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-CV",
+    "Name": "Covasna",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-DB",
+    "Name": "Dâmbovița",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-DJ",
+    "Name": "Dolj",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-GJ",
+    "Name": "Gorj",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-GL",
+    "Name": "Galați",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-GR",
+    "Name": "Giurgiu",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-HD",
+    "Name": "Hunedoara",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-HR",
+    "Name": "Harghita",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-IF",
+    "Name": "Ilfov",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-IL",
+    "Name": "Ialomița",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-IS",
+    "Name": "Iași",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-MH",
+    "Name": "Mehedinți",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-MM",
+    "Name": "Maramureș",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-MS",
+    "Name": "Mureș",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-NT",
+    "Name": "Neamț",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-OT",
+    "Name": "Olt",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-PH",
+    "Name": "Prahova",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-SB",
+    "Name": "Sibiu",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-SJ",
+    "Name": "Sălaj",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-SM",
+    "Name": "Satu Mare",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-SV",
+    "Name": "Suceava",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-TL",
+    "Name": "Tulcea",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-TM",
+    "Name": "Timiș",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-TR",
+    "Name": "Teleorman",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-VL",
+    "Name": "Vâlcea",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-VN",
+    "Name": "Vrancea",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  },
+  {
+    "Id": "RO-VS",
+    "Name": "Vaslui",
+    "CountryId": "RO",
+    "SourceIds": [
+      "ISO-3166"
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "IT",
+    "Name": "Italy",
+    "WorldRegionId": "EUROPE",
+    "CapitalCityIds": [
+      "IT-ROMA"
+    ],
+    "SourceIds": [
+      "ISO-3166",
+      "UN-M49"
+    ],
+    "IsoAlpha2": "IT",
+    "OfficialLanguageCodes": [
+      "ita"
+    ]
+  },
+  {
+    "Id": "RO",
+    "Name": "Romania",
+    "WorldRegionId": "EUROPE",
+    "CapitalCityIds": [
+      "RO-BUCURESTI"
+    ],
+    "SourceIds": [
+      "ISO-3166",
+      "UN-M49"
+    ],
+    "IsoAlpha2": "RO",
+    "OfficialLanguageCodes": [
+      "ron"
+    ]
+  }
+]
