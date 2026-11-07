@@ -63,6 +63,9 @@ jobs:
             Sashiko.Names-v.*)
               project="Sashiko.Names/Sashiko.Names.csproj"
               ;;
+            Sashiko.Geography-v.*)
+              project="Sashiko.Geography/Sashiko.Geography.csproj"
+              ;;
             *)
               echo "Unsupported package tag: $GITHUB_REF_NAME"
               exit 1
@@ -89,6 +92,10 @@ jobs:
           --no-restore
           --no-incremental
           -p:ContinuousIntegrationBuild=true
+
+      - name: Check geography release data
+        if: steps.package.outputs.project == 'Sashiko.Geography/Sashiko.Geography.csproj'
+        run: dotnet Sashiko.Maintenance/bin/Release/net10.0/Sashiko.Maintenance.dll geography validate-release
 
       - name: Test solution
         run: >
