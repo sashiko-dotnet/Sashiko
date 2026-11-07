@@ -39,6 +39,7 @@ The tool uses a simple two‑level command structure:
 
 | Category | Description |
 |----------|-------------|
+| `geography` | Validates and polishes embedded world, country, region and city collections |
 | `languages` | Maintains the embedded language registry |
 | `names` | Maintains the embedded name registries |
 
@@ -73,6 +74,28 @@ folder, trims values, removes blank or duplicate entries, sorts each array
 alphabetically, and writes the polished data back as clean indented JSON.
 
 ---
+
+#### `geography` Commands
+
+| Command | Description |
+|---------|-------------|
+| `polish` | Validates the entire proposed dataset, normalizes text, and sorts JSON collections |
+| `validate` | Checks canonical values, sources, references and partition ownership without writing |
+| `check` | Fails if polishing would change a file; used by CI |
+| `validate-release` | Also requires recorded source reuse review before Geography publication |
+
+Geography runtime loading trusts the data checked here and in tests. These
+commands use Sashiko's validated registry loaders and schema inspection, followed
+by domain checks. They do not contact external registries. Polishing never
+silently removes duplicates and validates every collection before writing.
+
+```bash
+dotnet run --project Sashiko.Maintenance -- geography polish
+dotnet run --project Sashiko.Maintenance -- geography check
+```
+
+The release workflow checks canonical data and source review before testing and
+packing Geography. It does not rewrite the dataset after tests.
 
 ## ✨ Architecture Overview
 The maintenance tool is built around three core concepts:

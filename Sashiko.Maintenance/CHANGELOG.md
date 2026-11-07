@@ -7,6 +7,14 @@ The maintenance tool is not versioned or published as a NuGet package.
 
 ---
 
+## Unreleased
+
+- Add geography polish, validate, check and validate-release commands.
+- Validate JSON shape, identifiers, sources, relationships and collection partitions
+  during development, keeping the published registry's loading path lightweight.
+- Normalize and sort complete proposed datasets before writing; reject duplicates.
+- Add regression tests for validation, read-only checks, release review and idempotence.
+
 ## 2026-08-14
 ### Changed
 - Updated the internal Sashiko.Core dependency to `0.4.1` so solution restore stays aligned with the latest registry packages.

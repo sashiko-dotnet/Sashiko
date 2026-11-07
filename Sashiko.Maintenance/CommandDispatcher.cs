@@ -7,6 +7,7 @@ namespace Sashiko.Maintenance
 		internal static readonly Dictionary<string, ICommandHandler> Handlers =
 			new(StringComparer.OrdinalIgnoreCase)
 			{
+				["geography"] = new GeographyCommandHandler(),
 				["languages"] = new LanguageCommandHandler(),
 				["names"] = new NamesCommandHandler()
 			};
@@ -37,6 +38,10 @@ namespace Sashiko.Maintenance
 		private static void PrintHelp()
 		{
 			Console.WriteLine("Usage:");
+			Console.WriteLine("  geography polish");
+			Console.WriteLine("  geography validate");
+			Console.WriteLine("  geography check");
+			Console.WriteLine("  geography validate-release");
 			Console.WriteLine("  languages update");
 			Console.WriteLine("  names polish");
 		}

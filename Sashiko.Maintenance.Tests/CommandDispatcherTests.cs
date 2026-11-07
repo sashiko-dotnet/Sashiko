@@ -39,6 +39,8 @@ namespace Sashiko.Maintenance.Tests
 				Assert.Contains("Usage:", output);
 				Assert.Contains("languages update", output);
 				Assert.Contains("names polish", output);
+				Assert.Contains("geography polish", output);
+				Assert.Contains("geography check", output);
 			}
 			finally
 			{
