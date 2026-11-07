@@ -84,6 +84,37 @@ namespace Sashiko.Maintenance.Tests.Libraries.Geography
 			await GeographyDataMaintenance.RunAsync(fixture.Path, "validate-release");
 		}
 
+		[Theory]
+		[InlineData(null)]
+		[InlineData("CC-BY-NC-4.0")]
+		[InlineData("CC-BY-SA-4.0")]
+		[InlineData("UNKNOWN")]
+		public async Task ReleaseCheck_ShouldRejectUnreviewedOrUnapprovedLicenseEvenWithAUrl(string? license)
+		{
+			using var fixture = new DataDirectory();
+			fixture.Update("sources.json", rows =>
+			{
+				if (license is null) rows[0]!.AsObject().Remove("LicenseId");
+				else rows[0]!["LicenseId"] = license;
+			});
+			await GeographyDataMaintenance.RunAsync(fixture.Path, "polish");
+			var before = fixture.Snapshot();
+			Assert.Contains("SOURCE", (await Assert.ThrowsAsync<InvalidDataException>(
+				() => GeographyDataMaintenance.RunAsync(fixture.Path, "validate-release"))).Message);
+			Assert.Equal(before, fixture.Snapshot());
+		}
+
+		[Theory]
+		[InlineData("CC0-1.0")]
+		[InlineData("Apache-2.0")]
+		public async Task ReleaseCheck_ShouldAcceptRecordedProjectApprovedLicense(string license)
+		{
+			using var fixture = new DataDirectory();
+			fixture.Update("sources.json", rows => rows[0]!["LicenseId"] = license);
+			await GeographyDataMaintenance.RunAsync(fixture.Path, "polish");
+			await GeographyDataMaintenance.RunAsync(fixture.Path, "validate-release");
+		}
+
 		[Fact]
 		public async Task MissingDirectory_ShouldNotBeCreatedByValidation()
 		{
@@ -104,7 +135,7 @@ namespace Sashiko.Maintenance.Tests.Libraries.Geography
 				File.WriteAllText(System.IO.Path.Combine(Path, "countries.json"),
 					"""[{"Id":"TEST","Name":"Example","WorldRegionId":"WORLD","CapitalCityIds":[],"SourceIds":["SOURCE"]}]""");
 				File.WriteAllText(System.IO.Path.Combine(Path, "sources.json"),
-					"""[{"Id":"SOURCE","Title":"Synthetic data","Url":"https://example.com/data","Attribution":"Synthetic test evidence.","LicenseUrl":"https://example.com/review"}]""");
+					"""[{"Id":"SOURCE","Title":"Synthetic data","Url":"https://example.com/data","Attribution":"Synthetic test evidence.","LicenseUrl":"https://example.com/review","LicenseId":"CC0-1.0"}]""");
 			}
 			internal void Update(string relative, Action<JsonArray> action)
 			{

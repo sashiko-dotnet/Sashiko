@@ -21,14 +21,19 @@ namespace Sashiko.Geography.Model
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public string? LicenseUrl { get; }
 
+		[Optional]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public string? LicenseId { get; }
+
 		[JsonConstructor]
-		internal GeographySource(string id, string title, string url, string attribution, string? licenseUrl = null)
+		internal GeographySource(string id, string title, string url, string attribution, string? licenseUrl = null, string? licenseId = null)
 		{
 			Id = id;
 			Title = title;
 			Url = url;
 			Attribution = attribution;
 			LicenseUrl = licenseUrl;
+			LicenseId = licenseId;
 		}
 	}
 }

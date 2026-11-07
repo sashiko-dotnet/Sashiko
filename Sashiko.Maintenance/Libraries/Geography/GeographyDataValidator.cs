@@ -90,7 +90,7 @@ namespace Sashiko.Maintenance.Libraries.Geography
 		private static GeographySource Normalize(GeographySource item, string path, bool polish)
 			=> new(Text(item.Id, path, "Id", polish, upper: true), Text(item.Title, path, "Title", polish),
 				Text(item.Url, path, "Url", polish), Text(item.Attribution, path, "Attribution", polish),
-				Optional(item.LicenseUrl, path, "LicenseUrl", polish));
+				Optional(item.LicenseUrl, path, "LicenseUrl", polish), Optional(item.LicenseId, path, "LicenseId", polish));
 
 		private static void Validate(GeographyDataSet data)
 		{

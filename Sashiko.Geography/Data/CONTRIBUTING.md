@@ -3,7 +3,7 @@
 ## Add Data
 
 1. Add a source to sources.json with Id, Title, Url, Attribution and, once reviewed,
-   LicenseUrl pointing to the relevant reuse terms.
+   LicenseId and LicenseUrl identifying the grant and its exact reuse terms.
 2. Add country records to countries.json, regions to Countries/{CountryId}/regions.json,
    and cities to Countries/{CountryId}/Cities/{RegionId}.json.
 3. Use country-direct.json when a city has no represented RegionId. Split a large
@@ -61,10 +61,16 @@ references. It validates all collections before writing any file. Check reports
 whether polishing would change files, without writing. Validate checks values
 and relationships without rewriting formatting.
 
-The source catalog must retain attribution. A missing LicenseUrl means reuse
-review is pending. Validate-release requires canonical data and recorded review.
-Maintainers must examine the terms and their applicability; adding a URL alone
-does not grant permission or prove official authority.
+The source catalog must retain attribution. Missing LicenseId or LicenseUrl
+means reuse review is incomplete. The initial Geography release policy accepts
+CC0-1.0 or Apache-2.0 data. Other licenses require a deliberate project policy
+review; a URL alone never establishes permission.
+
+The current seed uses only Wikidata structured data under CC0. Record entity
+revisions and field mappings in PROVENANCE.md when updating it. Wikipedia prose,
+images and other media have different terms and are not part of that source
+grant. Do not relabel old source data as CC0; acquire and document the actual
+replacement facts. See NOTICE.md and REUSE-REVIEW.md.
 
 ## Commands
 

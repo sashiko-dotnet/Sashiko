@@ -82,7 +82,7 @@ alphabetically, and writes the polished data back as clean indented JSON.
 | `polish` | Validates the entire proposed dataset, normalizes text, and sorts JSON collections |
 | `validate` | Checks canonical values, sources, references and partition ownership without writing |
 | `check` | Fails if polishing would change a file; used by CI |
-| `validate-release` | Also requires recorded source reuse review before Geography publication |
+| `validate-release` | Also requires a reviewed LicenseId (CC0-1.0 or Apache-2.0) and reuse URL |
 
 Geography runtime loading trusts the data checked here and in tests. These
 commands use Sashiko's validated registry loaders and schema inspection, followed

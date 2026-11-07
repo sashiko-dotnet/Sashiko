@@ -1,39 +1,57 @@
-# Geography Seed Sources
+# Geography Data Sources
 
-The collections retain source references from the unpublished geography work.
-Only names, coarse memberships, capital associations and optional language/country
-metadata are carried into this simplified seed. Population values and unverified
-coordinates are not included.
+Reviewed: 2026-11-07. Scope: the current Sashiko.Geography seed only.
 
-## Represented Geography
+## Current Source
 
-World-region names follow the five broad UN M49 groupings, using readable registry
-IDs such as EUROPE. This is one chosen grouping, not a complete geographic taxonomy.
+All factual fields in the embedded seed were freshly acquired from Wikidata's
+structured entity data, whose published copyright policy applies CC0-1.0.
+The source catalog records this as WIKIDATA-2026-11-07.
 
-Italy contributes its 20 represented main regions. Romania contributes its 41
-counties and Bucuresti as the represented main areas. This version exposes only
-one level and does not model every country's full administrative system.
+The software and documentation remain Apache-2.0. The underlying source facts
+retain their CC0 status. See [NOTICE](NOTICE.md), [the rights review](REUSE-REVIEW.md)
+and [pinned provenance](PROVENANCE.md).
 
-IT-ROMA and RO-BUCURESTI identify selected settlement locations for the simplified
-world. Their former experimental municipality IDs and population extents are
-not reused as claims about settlement boundaries. Countries declare the capital
-references. These records contain no geometric extents.
+No ISO, UN M49, Eurostat or Romanian census table is used as an input to the
+current seed. Their previous provenance entries were removed after re-acquiring
+the facts from the source above; they were not merely renamed.
 
-## Catalog And Review
+## Fields And Selection
 
-- ISO-3166 records the country/subdivision reference used for the seed names and
-  identifiers. The country-code page is retained as existing reuse evidence.
-  The applicability of source terms to contributed fields must still be reviewed.
-- UN-M49 supplies the high-level geographic grouping reference. Reuse review is pending.
-- EUROSTAT-URB_CPOP1-2024 retains the Roma reference. Its original statistical
-  population and administrative extent are not included in this model.
-- RO-RPL2021-TABLE-1.22 retains the Bucuresti census reference. Reuse review is pending.
+- World-region display names come from English entity labels. Sashiko selects
+  five coarse groupings; this is a model choice rather than a complete taxonomy.
+- Country names use English labels; P297 supplies country-code metadata.
+- Preferred, non-ended P30 statements support the selected Europe association.
+- P36 supplies current capital references. Historical capitals with end times
+  are excluded, and preferred statements take precedence.
+- P37 identifies official-language entities; those entities' P220 values supply
+  the recorded ISO 639-3 codes.
+- Country P150 statements select the represented main regions. Region P17
+  statements confirm country ownership, and P300 values map existing application
+  keys to those entities.
+- Regions and cities use Italian or Romanian structured labels. The Italian
+  part of the bilingual Trentino-Alto Adige/Südtirol label is selected for the
+  display name, preserving the existing record.
+- Roma's coarse Lazio association follows Q220 -> Q18288160 -> Q1282 through
+  current P131 statements. Bucuresti uses Q19660 both as the represented
+  first-level area and the selected settlement reference.
 
-sources.json contains the exact source URLs, attribution and any recorded
-LicenseUrl. The reuse field is a maintainer record, not an automatic permission
-or validity check. Source code licensing does not override source-data terms.
+The 2 countries, 62 regions, 2 cities and 5 world groupings retain the previous
+identifiers and display names. Stable IDs and selected associations are Sashiko
+model choices; they do not imply official registry status or geographic extents.
 
-No maintenance command downloads or validates data against an external registry.
-Contributors review factual changes and source evidence; generic tests check
-local schema and relationship consistency. This dataset is curated and incomplete,
-and its validation does not make Sashiko an official geographic authority.
+Only structured labels and statements were imported. No Wikipedia prose,
+Wikimedia images, maps, logos, population series or unrelated entity claims
+are included. Data is Unicode NFC normalized and sorted through Maintenance.
+
+## Future Contributions
+
+Record the source, exact terms, scope of permission and provenance for every
+contribution. For this initial package, the release policy accepts CC0-1.0 or
+Apache-2.0 data with a recorded LicenseUrl. Other terms require an explicit
+project policy decision; this is not a claim that all other licenses are unlawful.
+
+A URL or license identifier does not by itself establish that the contributor
+has the necessary rights. Review whether the grant covers the actual material,
+including relevant database rights, modifications, redistribution and commercial
+use. Runtime loading does not perform that review or make network requests.

@@ -9,6 +9,8 @@ The maintenance tool is not versioned or published as a NuGet package.
 
 ## Unreleased
 
+- Require a recorded CC0-1.0 or Apache-2.0 grant as well as a terms URL for Geography releases.
+
 - Add geography polish, validate, check and validate-release commands.
 - Validate JSON shape, identifiers, sources, relationships and collection partitions
   during development, keeping the published registry's loading path lightweight.

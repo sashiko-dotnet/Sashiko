@@ -31,9 +31,10 @@ namespace Sashiko.Maintenance.Libraries.Geography
 				throw new InvalidDataException($"Run geography polish before release: {string.Join(", ", changed)}.");
 			if (command == "validate-release")
 			{
-				var pending = data.Sources.Where(source => source.LicenseUrl is null).Select(source => source.Id).ToArray();
+				var pending = data.Sources.Where(source => source.LicenseUrl is null
+					|| source.LicenseId is not ("CC0-1.0" or "Apache-2.0")).Select(source => source.Id).ToArray();
 				if (pending.Length > 0)
-					throw new InvalidDataException($"Document source reuse review before release: {string.Join(", ", pending)}.");
+					throw new InvalidDataException($"Document approved data-license review (CC0-1.0 or Apache-2.0) before release: {string.Join(", ", pending)}.");
 			}
 			// No file is written until all collections and relationships have passed.
 			if (command == "polish")

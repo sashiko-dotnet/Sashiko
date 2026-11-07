@@ -64,8 +64,11 @@ and query behavior. There is no separate generated runtime format.
 ## Release And Future Work
 
 CI checks canonical data and runs tests. Geography releases additionally require
-recorded source reuse review. Those checks never modify data after testing.
-Source review remains a human responsibility and currently blocks the first release.
+recorded source reuse review, an explicit LicenseId and the current project's
+approved data-license policy (CC0-1.0 or Apache-2.0). Those checks never modify
+data after testing. The current seed was rebuilt from Wikidata structured data
+under CC0, with pinned revisions and a packaged notice. Source review remains
+a human responsibility; metadata alone is not proof of permission.
 
 Population observations, deeper administration, official-code catalogs, historical
 identity changes, geometry, dataset packs and external import APIs are deferred.

@@ -4,7 +4,7 @@
     "Name": "Alba",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -12,7 +12,7 @@
     "Name": "Argeș",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -20,7 +20,7 @@
     "Name": "Arad",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -28,7 +28,7 @@
     "Name": "București",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "Name": "Bacău",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -44,7 +44,7 @@
     "Name": "Bihor",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -52,7 +52,7 @@
     "Name": "Bistrița-Năsăud",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -60,7 +60,7 @@
     "Name": "Brăila",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -68,7 +68,7 @@
     "Name": "Botoșani",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "Name": "Brașov",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -84,7 +84,7 @@
     "Name": "Buzău",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -92,7 +92,7 @@
     "Name": "Cluj",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -100,7 +100,7 @@
     "Name": "Călărași",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -108,7 +108,7 @@
     "Name": "Caraș-Severin",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -116,7 +116,7 @@
     "Name": "Constanța",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -124,7 +124,7 @@
     "Name": "Covasna",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -132,7 +132,7 @@
     "Name": "Dâmbovița",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -140,7 +140,7 @@
     "Name": "Dolj",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -148,7 +148,7 @@
     "Name": "Gorj",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -156,7 +156,7 @@
     "Name": "Galați",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -164,7 +164,7 @@
     "Name": "Giurgiu",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -172,7 +172,7 @@
     "Name": "Hunedoara",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -180,7 +180,7 @@
     "Name": "Harghita",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -188,7 +188,7 @@
     "Name": "Ilfov",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -196,7 +196,7 @@
     "Name": "Ialomița",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -204,7 +204,7 @@
     "Name": "Iași",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -212,7 +212,7 @@
     "Name": "Mehedinți",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -220,7 +220,7 @@
     "Name": "Maramureș",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -228,7 +228,7 @@
     "Name": "Mureș",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -236,7 +236,7 @@
     "Name": "Neamț",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -244,7 +244,7 @@
     "Name": "Olt",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -252,7 +252,7 @@
     "Name": "Prahova",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -260,7 +260,7 @@
     "Name": "Sibiu",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -268,7 +268,7 @@
     "Name": "Sălaj",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -276,7 +276,7 @@
     "Name": "Satu Mare",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -284,7 +284,7 @@
     "Name": "Suceava",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -292,7 +292,7 @@
     "Name": "Tulcea",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -300,7 +300,7 @@
     "Name": "Timiș",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -308,7 +308,7 @@
     "Name": "Teleorman",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -316,7 +316,7 @@
     "Name": "Vâlcea",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -324,7 +324,7 @@
     "Name": "Vrancea",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
@@ -332,7 +332,7 @@
     "Name": "Vaslui",
     "CountryId": "RO",
     "SourceIds": [
-      "ISO-3166"
+      "WIKIDATA-2026-11-07"
     ]
   }
 ]

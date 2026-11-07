@@ -3,35 +3,35 @@
     "Id": "AFRICA",
     "Name": "Africa",
     "SourceIds": [
-      "UN-M49"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
     "Id": "AMERICAS",
     "Name": "Americas",
     "SourceIds": [
-      "UN-M49"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
     "Id": "ASIA",
     "Name": "Asia",
     "SourceIds": [
-      "UN-M49"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
     "Id": "EUROPE",
     "Name": "Europe",
     "SourceIds": [
-      "UN-M49"
+      "WIKIDATA-2026-11-07"
     ]
   },
   {
     "Id": "OCEANIA",
     "Name": "Oceania",
     "SourceIds": [
-      "UN-M49"
+      "WIKIDATA-2026-11-07"
     ]
   }
 ]

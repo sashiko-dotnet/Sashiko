@@ -97,9 +97,10 @@ maintenance importer, and independently exercise the actual trusted runtime
 loader and APIs. Routine data additions need no country-specific technical test.
 
 CI runs geography check before testing. Geography publication additionally runs
-geography validate-release to require canonical data and recorded source reuse
-review. A review URL is evidence recorded by a maintainer, not automatic proof
-of permission or factual correctness.
+geography validate-release to require canonical data, an explicit approved
+LicenseId and recorded source reuse terms. The current Geography data policy permits
+CC0-1.0 and Apache-2.0 source data. Metadata is a review record, not automatic
+proof of permission or factual correctness.
 
 ## Status And Scope
 
@@ -108,14 +109,16 @@ Italy and Romania, their 62 represented main regions, and Roma and Bucuresti.
 It is intentionally incomplete. No population analysis, boundary geometry,
 nested administrative graph, weather or demographic evolution runs here.
 
-Romanian census and UN M49 reuse review remains pending in the source catalog.
-The release check blocks publication until that review is documented. A local
-package can still be built for testing; it is not an official release.
+The seed has been rebuilt from Wikidata structured entity data under CC0-1.0.
+It no longer imports the ISO, UN M49, Eurostat or census material referenced by
+the prototype. [Pinned revisions and field mappings](Data/PROVENANCE.md) document
+the new acquisition. Release remains a deliberate maintainer action.
 
 This replaces an unpublished prototype. City IDs are now IT-ROMA and
 RO-BUCURESTI; no compatibility with experimental population or subdivision APIs
 is promised. Earlier branches retain that work for future scoped capabilities.
 
 See [contributing](Data/CONTRIBUTING.md), [sources](Data/SOURCES.md), and
-[architecture](ARCHITECTURE.md). Source code is Apache-2.0; source data retains
-its applicable terms.
+[architecture](ARCHITECTURE.md). Source code is Apache-2.0; the underlying
+Wikidata facts retain their CC0-1.0 status. See the [data notice](Data/NOTICE.md)
+and [reuse review](Data/REUSE-REVIEW.md).

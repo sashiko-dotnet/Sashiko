@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Rebuild the geographic seed from Wikidata CC0 structured data, preserving its
+  existing IDs, names and relationships.
+- Record entity revisions, field mappings and a packaged data notice.
+- Require an explicit approved data-license identifier in release checks.
+
 - Introduce a simple world-region, country, main-region and city registry.
 - Load trusted embedded collections once and expose indexed, immutable API results.
 - Validate and normalize contributions in Maintenance and generic tests.
