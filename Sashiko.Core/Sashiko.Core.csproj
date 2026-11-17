@@ -7,11 +7,11 @@
 
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.Core</PackageId>
-		<Version>0.5.0</Version>
+		<Version>0.6.0</Version>
 		<Description>
 			Core utilities for the Sashiko ecosystem. Provides deterministic randomization,
-			text normalization, unit conversions, staged file writes, bounded reads, and foundational helpers
-			for higher-level Sashiko packages.
+			text normalization, unit conversions, staged and verified file writes, bounded reads,
+			and foundational helpers for higher-level Sashiko packages.
 		</Description>
 		<PackageTags>$(SashikoSharedPackageTags);utilities;random;probability;text;normalization;units;io;files;streams;core</PackageTags>
 	</PropertyGroup>
