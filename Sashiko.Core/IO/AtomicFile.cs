@@ -129,15 +129,19 @@ namespace Sashiko.Core.IO
 			{
 				// Cleanup must not hide an earlier write/flush/commit error. Never remove the destination.
 				try { Stream.Dispose(); }
-				catch (IOException) { }
-				catch (UnauthorizedAccessException) { }
+				catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+				{
+					// Closing staged output is best-effort while unwinding the original operation failure.
+				}
 
 				if (_committed)
 					return;
 
 				try { File.Delete(_path); }
-				catch (IOException) { }
-				catch (UnauthorizedAccessException) { }
+				catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+				{
+					// Retain inaccessible staged output rather than replace the original failure with a cleanup error.
+				}
 			}
 		}
 	}

@@ -73,7 +73,7 @@ namespace Sashiko.Core.IO
 				if (read == 0)
 					return output.ToArray();
 				EnsureWithinLimit(read, remaining);
-				output.Write(buffer, 0, read);
+				await output.WriteAsync(buffer.AsMemory(0, read), cancellationToken).ConfigureAwait(false);
 			}
 		}
 
