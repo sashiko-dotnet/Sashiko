@@ -7,6 +7,16 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Planned
+- Additional structured-data formats
+- Registry composition helpers
+- Source-mapped diagnostics
+- Built-in validator integrations
+
+---
+
+## [0.1.3] - 2026-11-17
+
 ### Changed
 - Require the published `Sashiko.Validation` 0.1.3 package for consistent JSON parsing and repeated-model inspection.
 
@@ -19,11 +29,8 @@ The format follows [Semantic Versioning](https://semver.org/).
 - Exercise object and list loaders with the built-in validator, including comments, trailing commas, depth limits, duplicate names, embedded options and repeated model types.
 - Preserve the original string/context contract for custom validators and keep duplicate rejection opt-in.
 
-### Planned
-- Additional structured-data formats
-- Registry composition helpers
-- Source-mapped diagnostics
-- Built-in validator integrations
+### Notes
+This patch release preserves the public API and default duplicate-property allowance. It uses the official Validation 0.1.3 package and applies JSON parsing policies consistently during external registry loading.
 
 ---
 
