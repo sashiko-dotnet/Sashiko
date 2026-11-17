@@ -5,6 +5,26 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+- Honor JSON parser options supplied through `ValidationContext.Metadata["JsonOptions"]`, including comments, trailing commas, maximum depth and opt-in duplicate rejection.
+- Check duplicate JSON names throughout the input using the configured structural case-sensitivity policy, including pre-parsed elements and later array entries.
+- Retain the last matching JSON property during case-insensitive schema inspection instead of leaking a dictionary-collision exception.
+- Limit C# recursion guards to the current ancestor path so sibling properties and collection elements can reuse a model type.
+- Dispose JSON documents owned by string validation without disposing caller-owned elements.
+
+### Testing
+- Add standalone option/ownership regressions and repeated-type schema coverage.
+
+### Planned
+- YAML and XML schema validators
+- Semantic validation (ranges, patterns, enums)
+- Domain-specific validation rules
+- Structured validation diagnostics
+
+---
+
 ## [0.1.2] - 2026-08-13
 
 ### Changed
@@ -66,13 +86,3 @@ This patch release does not change the public API or runtime contract of **Sashi
 ### Notes
 This is the first official release of **Sashiko.Validation**, establishing the foundation for future Sashiko modules (Configuration, Registries, Semantic Validation).  
 The architecture is stable, fully tested, and ready for production use.
-
----
-
-## [Unreleased]
-
-### Planned
-- YAML and XML schema validators  
-- Semantic validation (ranges, patterns, enums)  
-- Domain-specific validation rules  
-- Structured validation diagnostics  

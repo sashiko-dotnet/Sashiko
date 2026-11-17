@@ -14,6 +14,7 @@ It is built to catch shape problems early, before data is deserialized into a do
 - JSON schema validator included out of the box
 - Case-sensitive or case-insensitive matching
 - Array element validation
+- Context-aware JSON parsing and opt-in duplicate-property rejection
 - Format-agnostic `ISchemaValidator` abstraction
 - Zero external dependencies
 
@@ -71,6 +72,60 @@ The comparer reports:
 
 This keeps validation focused on structure while leaving semantic domain rules to higher-level code.
 
+### JSON parsing policy
+
+`JsonSchemaValidator` reads a `JsonSerializerOptions` instance from
+`ValidationContext.Metadata["JsonOptions"]`. Registry loaders supply this context
+automatically. Direct callers can configure it explicitly:
+
+```csharp
+using System.Text.Json;
+
+var jsonOptions = new JsonSerializerOptions
+{
+    AllowTrailingCommas = true,
+    ReadCommentHandling = JsonCommentHandling.Skip,
+    MaxDepth = 32,
+    PropertyNameCaseInsensitive = true,
+    AllowDuplicateProperties = false
+};
+
+validator.Validate<MyConfig>(jsonString, new ValidationContext
+{
+    Source = "config.json",
+    IgnoreCase = jsonOptions.PropertyNameCaseInsensitive,
+    Metadata = new Dictionary<string, object> { ["JsonOptions"] = jsonOptions }
+});
+```
+
+For string input, parsing honors `AllowTrailingCommas`, `ReadCommentHandling`,
+`MaxDepth` and `AllowDuplicateProperties`. Without a correctly typed `JsonOptions`
+entry, the usual `System.Text.Json` parsing defaults apply. Options are not
+modified or frozen by validation.
+
+Duplicate properties remain allowed by default. Setting
+`AllowDuplicateProperties = false` rejects repeated names before schema
+inspection can collapse them. Names are compared with ordinal matching, or
+ordinal case-insensitive matching when `ValidationContext.IgnoreCase` is true.
+This structural check covers every JSON object, including unknown fields and
+all array elements; it does not infer custom converter or dictionary-key rules.
+When duplicates are allowed, schema inspection uses the last matching property
+in JSON order, including case variants under case-insensitive matching.
+
+Pre-parsed `JsonElement` input is also checked for duplicates under this policy.
+Parsing flags and depth limits apply when parsing strings, not retroactively to
+an existing element. The caller retains ownership of an element's document;
+documents created internally for string input are disposed before returning.
+
+Parsing and duplicate-policy failures throw `JsonException`; schema differences
+continue to throw `ValidationException`. This remains a structural validator,
+not a full JSON Schema implementation or a replacement for deserialization:
+serializer naming policies, custom converters and value constraints do not
+redefine the reflected C# schema.
+
+Repeated sibling properties and collection elements may reuse the same C# type.
+Recursion protection applies only to types already on the current ancestor path.
+
 ---
 
 ## 🧪 Testing
@@ -83,6 +138,7 @@ The test suite covers:
 - nullable and required property behavior
 - validator integration
 - arrays, nested objects, primitives, and recursion safety
+- JSON parsing options, duplicate policies, and repeated sibling model types
 
 ---
 
