@@ -5,6 +5,35 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Planned
+- Additional structured-data formats
+- Registry composition helpers
+- Source-mapped diagnostics
+- Built-in validator integrations
+
+---
+
+## [0.1.3] - 2026-11-17
+
+### Changed
+- Require the published `Sashiko.Validation` 0.1.3 package for consistent JSON parsing and repeated-model inspection.
+
+### Fixed
+- Apply external parsing options consistently across syntax checks and the built-in schema validator, including maximum depth and explicit duplicate-property rejection.
+- Wrap JSON parsing/policy failures from validation as `RegistryLoadException`, preserving source/type diagnostics and schema `ValidationException` behaviour.
+- Dispose parsed documents used by external syntax checks and share the object/list parsing pipeline.
+
+### Testing
+- Exercise object and list loaders with the built-in validator, including comments, trailing commas, depth limits, duplicate names, embedded options and repeated model types.
+- Preserve the original string/context contract for custom validators and keep duplicate rejection opt-in.
+
+### Notes
+This patch release preserves the public API and default duplicate-property allowance. It uses the official Validation 0.1.3 package and applies JSON parsing policies consistently during external registry loading.
+
+---
+
 ## [0.1.2] - 2026-08-14
 
 ### Changed
@@ -88,13 +117,3 @@ This patch release does not change the public API or runtime contract of **Sashi
 ### Notes
 
 This release establishes the foundation for future registry modules (e.g., Languages, Names) by providing a stable, expressive, and fully tested registry loading pipeline.
-
----
-
-## [Unreleased]
-
-### Planned
-- Additional structured-data formats
-- Registry composition helpers
-- Source-mapped diagnostics
-- Built-in validator integrations

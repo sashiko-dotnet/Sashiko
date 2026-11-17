@@ -207,6 +207,7 @@ namespace Sashiko.Registries.Tests.Json
 			loader.LoadExternal(ValidJson, "myfile.json");
 
 			Assert.Equal("myfile.json", validator.LastContext?.Source);
+			Assert.Equal(ValidJson, Assert.IsType<string>(validator.LastInput));
 		}
 
 		[Fact]
