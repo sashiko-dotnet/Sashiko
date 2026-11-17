@@ -7,6 +7,16 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Planned
+- YAML and XML schema validators
+- Semantic validation (ranges, patterns, enums)
+- Domain-specific validation rules
+- Structured validation diagnostics
+
+---
+
+## [0.1.3] - 2026-11-17
+
 ### Fixed
 - Honor JSON parser options supplied through `ValidationContext.Metadata["JsonOptions"]`, including comments, trailing commas, maximum depth and opt-in duplicate rejection.
 - Check duplicate JSON names throughout the input using the configured structural case-sensitivity policy, including pre-parsed elements and later array entries.
@@ -17,11 +27,8 @@ The format follows [Semantic Versioning](https://semver.org/).
 ### Testing
 - Add standalone option/ownership regressions and repeated-type schema coverage.
 
-### Planned
-- YAML and XML schema validators
-- Semantic validation (ranges, patterns, enums)
-- Domain-specific validation rules
-- Structured validation diagnostics
+### Notes
+This patch release preserves the public API and default duplicate-property allowance. Explicit JSON parsing options are now honored, and repeated model types are fully inspected.
 
 ---
 
