@@ -7,6 +7,13 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `AtomicFile.WriteVerified` and `WriteVerifiedAsync` stage streamed output and check an exact length and trusted SHA-256 digest before publication.
+- Verified writes reread the staged file through its existing handle, leave caller streams open, bound source consumption to the expected count plus an EOF probe, and snapshot the expected digest before reading.
+
+### Testing
+- Added verification, cancellation, stream-ownership, destination-collision, cleanup and link regression coverage to the existing native IO test suite.
+
 ### Planned
 - Temperature conversion utilities
 - Time and duration helpers

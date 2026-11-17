@@ -140,6 +140,61 @@ Filesystem operations use the standard [.NET move semantics](https://learn.micro
 and [file flushing](https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.flush?view=net-10.0).
 The concurrency limitation follows the [.NET 10 Unix implementation](https://github.com/dotnet/runtime/blob/v10.0.0/src/libraries/System.Private.CoreLib/src/System/IO/FileSystem.Unix.cs).
 
+#### Verified stream writes
+
+`AtomicFile.WriteVerified` and `WriteVerifiedAsync` add an exact byte-count and
+SHA-256 check before publication. Use them when a completed stream might still
+contain incomplete or unexpected content, such as a file being copied against
+a trusted manifest. An ordinary `Write` copies to EOF without these checks;
+`BoundedRead` enforces an upper bound rather than an exact size and digest.
+
+```csharp
+// Obtain both expectations from a trusted source, independently of this copy.
+// expectedLength is a long; expectedSha256 contains the 32 digest bytes.
+using var source = File.OpenRead(sourcePath);
+await AtomicFile.WriteVerifiedAsync(
+    destinationPath,
+    source,
+    expectedLength,
+    expectedSha256,
+    cancellationToken: cancellationToken);
+```
+
+- The source is read from its current position without inspecting its length or
+  seeking. It remains open on every outcome, and its position is not restored.
+  For a file copy, the caller owns the source file handle. The destination must
+  not alias that source file; arbitrary stream/file identity is not detected.
+- `expectedLength` must be nonnegative, including zero, and uses `long` so files
+  need not fit in a managed array. Short input fails at EOF. One additional byte
+  checks for oversized input, and is never written. Logical source consumption
+  is limited to the expected count plus that probe; buffered sources may prefetch.
+  The copy buffer is at most 80 KiB, reduced for smaller expectations.
+- `expectedSha256` must contain exactly 32 bytes, not a hexadecimal string. Use
+  `Convert.FromHexString` when needed. The digest is copied before source reads
+  or the first await, so later mutations of the supplied buffer do not change
+  the expectation. Invalid length/digest arguments fail before staging or reads.
+- After copying, buffered output is flushed and the staged file is rewound and
+  hashed through the same open handle using .NET's
+  [`SHA256.HashData` / `HashDataAsync`](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.sha256).
+  Only a matching staged length and digest permit the existing flush/close/move
+  commit. Rereading costs an additional sequential pass over the staged file.
+  This checks bytes returned by the filesystem, not physical-media durability.
+- Length/hash mismatches throw `InvalidDataException`. IO errors and cancellation
+  propagate; pre-publication failures preserve the destination and trigger the
+  same operation-owned temporary-file cleanup as ordinary atomic writes.
+- Async copying, flushing and hashing observe cancellation, with a final check
+  immediately before the synchronous commit section. The overwrite, permissions,
+  concurrency, link, cleanup and durability limits documented for atomic writes
+  also apply here. In particular, no-overwrite is not an exclusive reservation
+  against uncoordinated writers, and a commit error does not confirm publication.
+
+This composes existing .NET copying, SHA-256 and the existing Sashiko staging
+implementation. It introduces no codec, custom hash implementation, third-party
+dependency or additional package. The API owns sequencing and failure handling;
+applications still own manifests, directory layouts, locking and multi-file moves.
+An expected hash must come from a trusted source: an attacker-replaceable hash
+does not authenticate a file. No encryption or manifest authentication is added.
+
 #### Bounded reads
 
 `BoundedRead.ReadAllBytes` and `ReadAllBytesAsync` accept a path or a readable
@@ -177,6 +232,7 @@ The test suite covers:
 - text normalization
 - runtime environment metadata
 - staged persistence failure/cleanup and bounded stream consumption
+- exact-length and SHA-256 verification before publishing streamed output
 
 IO coverage includes source failures, cancellation before commit, short and
 non-seekable reads, growing files, exact/zero limits, cleanup ownership and
@@ -184,6 +240,10 @@ observed links. CI includes IO tests on Windows, macOS and Linux; Unix mode/link
 tests are explicitly skipped on Windows. These tests do not establish power-loss
 durability, forced disk-full/flush behaviour, hostile-path safety or network
 filesystem guarantees.
+
+Verified-write coverage includes multi-buffer/short/non-seekable reads, empty
+payloads, wrong lengths and hashes, digest-buffer mutation, source failures,
+cancellation, destination collisions, links and cleanup ownership.
 
 ---
 
