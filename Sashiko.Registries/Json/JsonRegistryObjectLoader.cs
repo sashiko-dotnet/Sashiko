@@ -41,21 +41,7 @@ namespace Sashiko.Registries.Json
 		// ------------------------------------------------------------
 		public T LoadExternal(string json, string source)
 		{
-			EnsureValidJson(json, source);
-
-			_schemaValidator.Validate<T>(
-				json,
-				new ValidationContext
-				{
-					Source = source,
-					IgnoreCase = _externalOptions.PropertyNameCaseInsensitive,
-					Metadata = new Dictionary<string, object>
-					{
-						["IsEmbedded"] = false,
-						["JsonOptions"] = _externalOptions,
-						["RegistryType"] = typeof(T).FullName!
-					}
-				});
+			JsonRegistryInput.Validate<T>(json, source, typeof(T), _schemaValidator, _externalOptions);
 
 			EnsureDeserializable<T>(json, source);
 
@@ -65,28 +51,6 @@ namespace Sashiko.Registries.Json
 		// ------------------------------------------------------------
 		// Helpers
 		// ------------------------------------------------------------
-
-		private void EnsureValidJson(string json, string source)
-		{
-			try
-			{
-				var docOptions = new JsonDocumentOptions
-				{
-					AllowTrailingCommas = _externalOptions.AllowTrailingCommas,
-					CommentHandling = _externalOptions.ReadCommentHandling
-				};
-
-				JsonDocument.Parse(json, docOptions);
-			}
-			catch (JsonException ex)
-			{
-				throw new RegistryLoadException(
-						$"Invalid JSON format in '{source}'.",
-						source,
-						typeof(T),
-						ex);
-			}
-		}
 
 		private void EnsureDeserializable<TModel>(string json, string source)
 		{

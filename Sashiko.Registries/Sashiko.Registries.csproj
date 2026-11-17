@@ -20,7 +20,7 @@
 	<!-- Dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Sashiko.Core" Version="0.4.1" />
-		<PackageReference Include="Sashiko.Validation" Version="0.1.2" />
+		<PackageReference Include="Sashiko.Validation" Version="0.1.3" />
 	</ItemGroup>
 
 	<!-- Include package README in the package. Shared metadata includes the NuGet icon. -->
