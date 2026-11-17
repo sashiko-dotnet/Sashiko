@@ -6,14 +6,17 @@ namespace Sashiko.Validation.Schema.Inspectors.Json
 	public static class JsonSchemaInspector
 	{
 		public static SchemaNode GetSchema(JsonElement element, string? name = null)
+			=> GetSchema(element, name, StringComparer.Ordinal);
+
+		internal static SchemaNode GetSchema(JsonElement element, string? name, StringComparer comparer)
 		{
 			switch (element.ValueKind)
 			{
 				case JsonValueKind.Object:
-					return BuildObjectNode(element, name);
+					return BuildObjectNode(element, name, comparer);
 
 				case JsonValueKind.Array:
-					return BuildArrayNode(element, name);
+					return BuildArrayNode(element, name, comparer);
 
 				default:
 					return new SchemaNode(
@@ -24,13 +27,13 @@ namespace Sashiko.Validation.Schema.Inspectors.Json
 			}
 		}
 
-		private static SchemaNode BuildObjectNode(JsonElement element, string? name)
+		private static SchemaNode BuildObjectNode(JsonElement element, string? name, StringComparer comparer)
 		{
-			var fields = new Dictionary<string, SchemaNode>();
+			var fields = new Dictionary<string, SchemaNode>(comparer);
 
 			foreach (var prop in element.EnumerateObject())
 			{
-				fields[prop.Name] = GetSchema(prop.Value, prop.Name);
+				fields[prop.Name] = GetSchema(prop.Value, prop.Name, comparer);
 			}
 
 			return new SchemaNode(
@@ -41,7 +44,7 @@ namespace Sashiko.Validation.Schema.Inspectors.Json
 			);
 		}
 
-		private static SchemaNode BuildArrayNode(JsonElement element, string? name)
+		private static SchemaNode BuildArrayNode(JsonElement element, string? name, StringComparer comparer)
 		{
 			// Empty array → element schema unknown → treat as leaf
 			if (!element.EnumerateArray().Any())
@@ -56,7 +59,7 @@ namespace Sashiko.Validation.Schema.Inspectors.Json
 
 			// Infer element schema from first element
 			var first = element.EnumerateArray().First();
-			var elementSchema = GetSchema(first, name: null);
+			var elementSchema = GetSchema(first, name: null, comparer);
 
 			return new SchemaNode(
 				name ?? "",

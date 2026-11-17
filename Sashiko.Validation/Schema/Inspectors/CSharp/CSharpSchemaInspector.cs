@@ -87,6 +87,9 @@ namespace Sashiko.Validation.Schema.Inspectors.CSharp
 				fields[prop.Name] = childNode;
 			}
 
+			// Only ancestors represent recursion; sibling properties may reuse the same type.
+			visited.Remove(type);
+
 			return new SchemaNode(
 				name ?? type.Name,
 				required,
