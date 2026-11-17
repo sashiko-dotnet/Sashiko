@@ -11,6 +11,7 @@ It provides small, reusable building blocks used by higher-level Sashiko package
 - Strongly typed memory conversions
 - Strongly typed bandwidth conversions
 - JSON file read/write helpers
+- Staged byte/stream file writes and bounded reads
 - Text normalization helpers
 - Probability utilities and random selection helpers
 - Cached environment/runtime information
@@ -68,6 +69,99 @@ Console.WriteLine(runtime.ArchitectureName); // x64, ARM64, ...
 Console.WriteLine(RuntimeInfo.IsDebug);
 ```
 
+### File persistence and bounded input
+
+```csharp
+using System.Text;
+using Sashiko.Core.IO;
+
+// The parent directory already exists and its access policy suits this payload.
+var path = Path.Combine(appDataDirectory, "settings.json");
+var bytes = Encoding.UTF8.GetBytes("{\"theme\":\"dark\"}");
+
+await AtomicFile.WriteAsync(path, bytes, overwrite: true);
+var saved = await BoundedRead.ReadAllBytesAsync(path, maxBytes: 1024 * 1024);
+```
+
+`AtomicFile` stages output beside its destination, flushes and closes it, then
+publishes it with `File.Move`. Overwrite is opt-in. `BoundedRead` enforces an
+inclusive limit on actual bytes consumed, including growing/non-seekable input.
+Both offer synchronous, asynchronous and caller-owned stream overloads.
+
+`Sashiko.Core.IO` is a namespace within `Sashiko.Core`; it requires no additional
+package. Existing JSON helpers keep their current behaviour.
+
+#### Atomic writes
+
+`AtomicFile.Write` and `WriteAsync` accept bytes or a readable source stream.
+The source is copied from its current position to EOF and remains open on
+success, failure or cancellation. Memory supplied to `WriteAsync` must remain
+unchanged until the operation completes.
+
+- The parent directory must already exist. Output is staged in a uniquely named
+  `.sashiko-<id>.tmp` file beside the destination, using `FileMode.CreateNew` and
+  `FileShare.None`. The staged file is flushed with `Flush(flushToDisk: true)`
+  and closed before publication.
+- `overwrite` defaults to false; true permits create-or-replace. Use an
+  application-controlled directory and coordinate writers. The runtime's
+  no-overwrite move is not a portable atomic create-if-absent operation against
+  competing processes: in .NET 10, a Unix destination-existence check can race a
+  subsequent rename. No read/modify/write lock or version check is provided.
+- On local filesystems supporting atomic same-directory rename, new readers see
+  complete old or new content at publication. Already-open readers and sharing
+  constraints follow OS rules. This guarantee does not extend to untested
+  network filesystems, cloud-synced folders or unusual mount configurations.
+  Flushing file contents does not flush the directory or guarantee survival
+  after power loss. No multi-file transaction is provided.
+- Read, write or flush failures before publication leave the destination
+  untouched. Cleanup attempts only the temporary filename created by this
+  operation; cleanup IO/access errors do not hide the original error. A process
+  crash or failed cleanup can leave a temporary file. No automatic scavenging
+  is performed. A commit error means publication was not confirmed; inspect the
+  destination before retrying consequential work. There are no automatic retries.
+- Observed directory or symbolic-link/reparse-point destinations are rejected
+  before staging and again before the move. These checks are best-effort, not a
+  path sandbox. Parent links follow ordinary OS resolution; hostile directory
+  changes and file-identity races are outside this contract.
+- **Replacement publishes the temporary file's access metadata.** Existing
+  destination ACLs, permissions, ownership, attributes and timestamps are not
+  copied. Unix staging requests owner read/write only, subject to umask; Windows
+  staging inherits the parent directory's ACL. Use this API where that policy
+  is appropriate for the published file, rather than where per-file ACLs or
+  platform file encryption must be preserved. Sensitive payloads must already
+  be encrypted if required; the API writes exactly the bytes supplied.
+- Async writes check cancellation before staging, pass the token to writing or
+  copying, and check it again before the synchronous flush/close/move section.
+  Once that section begins, cancellation does not interrupt it or turn a
+  successful commit into a canceled task. Pending source reads depend on the
+  source stream's cancellation support.
+
+Filesystem operations use the standard [.NET move semantics](https://learn.microsoft.com/en-us/dotnet/api/system.io.file.move?view=net-10.0)
+and [file flushing](https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.flush?view=net-10.0).
+The concurrency limitation follows the [.NET 10 Unix implementation](https://github.com/dotnet/runtime/blob/v10.0.0/src/libraries/System.Private.CoreLib/src/System/IO/FileSystem.Unix.cs).
+
+#### Bounded reads
+
+`BoundedRead.ReadAllBytes` and `ReadAllBytesAsync` accept a path or a readable
+stream and return the exact bytes from its current position to EOF.
+
+- `maxBytes` is inclusive, may be zero, and must not exceed `Array.MaxLength`.
+  The limit is enforced during consumption without inspecting `Length`,
+  `Position` or seeking support.
+- One extra byte distinguishes EOF from oversized input. Oversized input throws
+  `InvalidDataException` without returning a partial payload. Caller-supplied
+  streams remain open; their positions are not rolled back. At most
+  `maxBytes + 1` bytes are consumed logically, although buffered sources may
+  prefetch internally.
+- The path overloads own and dispose their file handles and follow ordinary OS
+  link behaviour. Async reads check cancellation between reads and after each
+  read completes; interrupting a pending read depends on the underlying stream.
+- The copy buffer is at most 80 KiB, reduced to `maxBytes + 1` for smaller limits.
+  This follows the conventional [`Stream.CopyTo` default](https://github.com/dotnet/runtime/blob/v10.0.0/src/libraries/System.Private.CoreLib/src/System/IO/Stream.cs),
+  rather than a workload-specific benchmark. The accumulation buffer and returned
+  array can coexist, so the byte limit is not a total allocation, CPU-time or
+  general decompression limit. Large limits can still exhaust memory.
+
 ---
 
 ## 🧪 Testing
@@ -82,6 +176,14 @@ The test suite covers:
 - probability helpers
 - text normalization
 - runtime environment metadata
+- staged persistence failure/cleanup and bounded stream consumption
+
+IO coverage includes source failures, cancellation before commit, short and
+non-seekable reads, growing files, exact/zero limits, cleanup ownership and
+observed links. CI includes IO tests on Windows, macOS and Linux; Unix mode/link
+tests are explicitly skipped on Windows. These tests do not establish power-loss
+durability, forced disk-full/flush behaviour, hostile-path safety or network
+filesystem guarantees.
 
 ---
 

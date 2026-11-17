@@ -5,6 +5,34 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Planned
+- Temperature conversion utilities
+- Time and duration helpers
+- Human-readable formatting (e.g., “1.5 GB”)
+- Additional numeric abstractions
+
+---
+
+## [0.5.0] - 2026-11-17
+
+### Added
+- `Sashiko.Core.IO.AtomicFile` stages byte or stream output in the destination directory, flushes it, and publishes it using runtime move semantics, with explicit overwrite and async cancellation behaviour.
+- `Sashiko.Core.IO.BoundedRead` reads files/streams with an inclusive limit on actual bytes consumed, including non-seekable and growing input.
+
+### Documentation
+- Documented stream ownership, cancellation, access-metadata, concurrency, cleanup and durability contracts in the Core README.
+
+### Testing
+- Added failure-oriented IO tests and native Windows/macOS/Linux CI coverage.
+- Resolved SonarQube findings in the new IO implementation.
+
+### Notes
+This release adds opt-in APIs within the existing Core package. Existing JSON helpers and serialization behaviour remain unchanged; no external dependencies are added.
+
+---
+
 ## [0.4.1] - 2026-05-23
 
 ### Changed
@@ -107,13 +135,3 @@ This release establishes the foundation for future modules (Registries, Validati
 - Strongly-typed `MemoryUnit` and `BandwidthUnit` enums
 - Full test suite for all conversion paths
 - Project metadata and documentation
-
----
-
-## [Unreleased]
-
-### Planned
-- Temperature conversion utilities
-- Time and duration helpers
-- Human-readable formatting (e.g., “1.5 GB”)
-- Additional numeric abstractions
