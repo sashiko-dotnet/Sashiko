@@ -15,6 +15,20 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.6.0] - 2026-11-17
+
+### Added
+- `AtomicFile.WriteVerified` and `WriteVerifiedAsync` stage streamed output and check an exact length and trusted SHA-256 digest before publication.
+- Verified writes reread the staged file through its existing handle, leave caller streams open, bound source consumption to the expected count plus an EOF probe, and snapshot the expected digest before reading.
+
+### Testing
+- Added verification, cancellation, stream-ownership, destination-collision, cleanup and link regression coverage to the existing native IO test suite.
+
+### Notes
+This release adds opt-in verification APIs using the existing Core IO staging implementation and .NET SHA-256. Existing atomic-write and bounded-read contracts are preserved; no external dependencies are added. Verification requires an additional sequential read of staged output and a trusted expected length/digest.
+
+---
+
 ## [0.5.0] - 2026-11-17
 
 ### Added

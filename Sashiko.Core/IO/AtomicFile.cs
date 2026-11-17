@@ -6,7 +6,7 @@ namespace Sashiko.Core.IO
 	/// transaction or a power-loss durability guarantee. Replacement uses the temporary file's
 	/// metadata; destination permissions and ACLs are not preserved. See the Core README for the full contract.
 	/// </remarks>
-	public static class AtomicFile
+	public static partial class AtomicFile
 	{
 		/// <summary>Writes bytes to a temporary file, flushes it to disk, closes it, and moves it to <paramref name="path"/>.</summary>
 		/// <param name="path">Destination in an existing directory.</param>
@@ -99,13 +99,13 @@ namespace Sashiko.Core.IO
 			private bool _committed;
 			public FileStream Stream { get; }
 
-			public StagedFile(string destination, bool asynchronous)
+			public StagedFile(string destination, bool asynchronous, bool readable = false)
 			{
 				_path = Path.Combine(Path.GetDirectoryName(destination)!, $".sashiko-{Guid.NewGuid():N}.tmp");
 				var options = new FileStreamOptions
 				{
 					Mode = FileMode.CreateNew,
-					Access = FileAccess.Write,
+					Access = readable ? FileAccess.ReadWrite : FileAccess.Write,
 					Share = FileShare.None,
 					Options = asynchronous ? FileOptions.Asynchronous : FileOptions.None
 				};
