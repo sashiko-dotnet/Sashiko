@@ -74,7 +74,10 @@ namespace Sashiko.Validation.Validators.Json
 				foreach (var property in element.EnumerateObject())
 				{
 					if (!names.Add(property.Name))
-					throw new JsonException($"Duplicate JSON property '{property.Name}'.");
+					{
+						throw new JsonException($"Duplicate JSON property '{property.Name}'.");
+					}
+
 					EnsureUniqueProperties(property.Value, comparer);
 				}
 			}
