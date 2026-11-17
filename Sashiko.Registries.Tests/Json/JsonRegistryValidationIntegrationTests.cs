@@ -90,7 +90,7 @@ namespace Sashiko.Registries.Tests.Json
 			var error = Assert.Throws<RegistryLoadException>(() =>
 				Load("""{ "Id": 1, "Details": { "Value": 2 } }""", list, options));
 
-			Assert.IsAssignableFrom<JsonException>(error.InnerException);
+			Assert.IsType<JsonException>(error.InnerException, exactMatch: false);
 			Assert.Equal(Source, error.SourceName);
 			Assert.Equal(typeof(Entry), error.RegistryType);
 		}
@@ -111,7 +111,7 @@ namespace Sashiko.Registries.Tests.Json
 
 			var error = Assert.Throws<RegistryLoadException>(() => Load(json, list, options));
 
-			Assert.IsAssignableFrom<JsonException>(error.InnerException);
+			Assert.IsType<JsonException>(error.InnerException, exactMatch: false);
 			Assert.Equal(Source, error.SourceName);
 			Assert.Equal(typeof(Entry), error.RegistryType);
 		}
@@ -131,7 +131,7 @@ namespace Sashiko.Registries.Tests.Json
 
 			var error = Assert.Throws<RegistryLoadException>(() => Load(json, list, options));
 
-			Assert.IsAssignableFrom<JsonException>(error.InnerException);
+			Assert.IsType<JsonException>(error.InnerException, exactMatch: false);
 		}
 
 		[Theory]
@@ -251,7 +251,7 @@ namespace Sashiko.Registries.Tests.Json
 			var error = Assert.Throws<RegistryLoadException>(() =>
 				loader.LoadExternal("""[{ "Id": 1 }, { "Id": 2, "id": 3 }]""", Source));
 
-			Assert.IsAssignableFrom<JsonException>(error.InnerException);
+			Assert.IsType<JsonException>(error.InnerException, exactMatch: false);
 		}
 	}
 }
