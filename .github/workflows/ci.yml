@@ -31,11 +31,11 @@ jobs:
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-      - name: Test Core IO on native filesystem
+      - name: Test Core IO and compression on native platform
         run: >
           dotnet test Sashiko.Core.Tests/Sashiko.Core.Tests.csproj
           --configuration Release
-          --filter "FullyQualifiedName~Sashiko.Core.Tests.IO"
+          --filter "FullyQualifiedName~Sashiko.Core.Tests.IO|FullyQualifiedName~Sashiko.Core.Tests.Compression"
 
   validate:
     name: Build, test, pack, and analyze

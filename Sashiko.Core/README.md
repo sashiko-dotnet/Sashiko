@@ -12,6 +12,7 @@ It provides small, reusable building blocks used by higher-level Sashiko package
 - Strongly typed bandwidth conversions
 - JSON file read/write helpers
 - Staged byte/stream file writes and bounded reads
+- Bounded GZip/Brotli payload compression with explicit effort settings
 - Text normalization helpers
 - Probability utilities and random selection helpers
 - Cached environment/runtime information
@@ -219,6 +220,84 @@ stream and return the exact bytes from its current position to EOF.
 
 ---
 
+### Payload compression
+
+`Sashiko.Core.Compression.CompressedData` offers `Compress`, `CompressAsync`,
+`Decompress` and `DecompressAsync`. The caller explicitly chooses GZip or Brotli
+and independent input/output byte limits. The methods return complete byte arrays
+and leave the source stream open on success, failure and cancellation.
+
+```csharp
+using System.Text;
+using Sashiko.Core.Compression;
+
+var payload = Encoding.UTF8.GetBytes("{\"revision\":1}");
+using var input = new MemoryStream(payload, writable: false);
+var compressed = await CompressedData.CompressAsync(
+    input, CompressionFormat.Brotli,
+    maxInputBytes: 16 * 1024 * 1024,
+    maxOutputBytes: 16 * 1024 * 1024,
+    options: new CompressionOptions { BrotliQuality = 4 });
+
+using var encoded = new MemoryStream(compressed, writable: false);
+var restored = await CompressedData.DecompressAsync(
+    encoded, CompressionFormat.Brotli,
+    maxInputBytes: 16 * 1024 * 1024,
+    maxOutputBytes: 16 * 1024 * 1024);
+```
+
+- Null options use .NET's `CompressionLevel.Optimal`. Set `Level` to choose a
+  general preference, such as `Fastest` or `SmallestSize`, for either codec.
+  Alternatively, set `BrotliQuality` from 0 to 11 for Brotli. The two settings
+  cannot be combined, and quality is rejected for GZip. `NoCompression` still
+  produces the selected wire format. Format/effort choices are never switched
+  automatically. Record the format with application data; decoding needs the
+  format but not the original effort setting.
+- Limits are inclusive, from zero through `Array.MaxLength`. For compression
+  they bound original input and encoded output, including finalization bytes;
+  for decompression they bound encoded input and decoded output. Zero allows
+  empty content, but its valid encoded representation still needs output space.
+  Empty encoded input is rejected. GZip empty encoding uses a standard 20-byte
+  empty member because .NET's encoder otherwise emits no member for empty input.
+- Input is buffered using `BoundedRead`, from the current source position to EOF,
+  before codec work. No seeking or reported length is needed; input can consume
+  one extra byte to detect overflow. The source is never disposed or rewound.
+  Even data ignored by a decoder is consumed as part of the bounded input. Frame
+  extraction from a larger protocol is not provided.
+- These are **bounded payload APIs**, not constant-memory streaming transforms.
+  Input, output accumulation, returned arrays and codec workspace can coexist.
+  The byte limits are not total-memory, native-allocation or CPU-time quotas;
+  large limits or expensive quality settings can still exhaust resources.
+- Async operations observe cancellation during source/decoder reads, between
+  encoder writes and after finalization before returning. Pending reads depend
+  on the source's token support; codec CPU work and tokenless finalization may
+  finish before cancellation is observed. No partial output array is returned.
+  Async methods do not guarantee background execution of codec CPU work; the
+  caller controls scheduling for expensive workloads.
+- Invalid arguments fail before input reads. Bounds and codec-reported invalid
+  data throw `InvalidDataException`; Brotli decoder `InvalidOperationException`
+  is normalized with its cause preserved. Source-read exceptions propagate.
+- **A successful decode does not establish complete format validity or integrity.**
+  .NET can accept truncated data and return partial or even complete content.
+  It may ignore trailing bytes. GZip can decode concatenated members; Brotli
+  reads the first stream. These follow runtime decoder semantics, which can
+  change with runtime versions/configuration. Use a trusted decoded length/hash
+  or an authenticated container when integrity matters. This is separate from
+  strict validation of all compressed framing bytes.
+
+Decoded bytes are preserved exactly. Encoded bytes are not promised to be
+canonical or stable across runtime versions, effort settings or write chunking.
+
+The implementation uses .NET's codec APIs and the existing bounded reader. It
+adds no external package or codec source/binary. Sashiko's integration remains
+Apache-2.0; .NET and codec components retain their existing permissive licenses
+and applicable notices. The
+[design and license record](https://github.com/sashiko-dotnet/Sashiko/blob/master/docs/design/bounded-compression.md)
+documents alternatives, format behavior and distribution responsibilities.
+Filesystem publication and encryption remain caller composition decisions.
+
+---
+
 ## 🧪 Testing
 
 The test suite covers:
@@ -233,6 +312,7 @@ The test suite covers:
 - runtime environment metadata
 - staged persistence failure/cleanup and bounded stream consumption
 - exact-length and SHA-256 verification before publishing streamed output
+- codec interoperability, input/output limits, effort settings and stream ownership
 
 IO coverage includes source failures, cancellation before commit, short and
 non-seekable reads, growing files, exact/zero limits, cleanup ownership and
