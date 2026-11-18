@@ -1,6 +1,6 @@
 # Bounded payload compression
 
-Status: implemented for review, 18 November 2026. Public APIs remain subject to review.
+Status: accepted for Sashiko.Core 0.7.0, 18 November 2026.
 
 ## Need and scope
 

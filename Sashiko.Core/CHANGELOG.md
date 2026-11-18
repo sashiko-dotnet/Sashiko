@@ -7,6 +7,16 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Planned
+- Temperature conversion utilities
+- Time and duration helpers
+- Human-readable formatting (e.g., “1.5 GB”)
+- Additional numeric abstractions
+
+---
+
+## [0.7.0] - 2026-11-18
+
 ### Added
 - `Sashiko.Core.Compression.CompressedData` provides bounded payload compression/decompression with explicit GZip/Brotli selection, sync/async APIs and caller-owned source streams.
 - `CompressionOptions` supports runtime compression-level preferences or an explicit Brotli quality. Encoding bounds include finalization, and empty GZip input produces an interoperable empty member.
@@ -17,11 +27,8 @@ The format follows [Semantic Versioning](https://semver.org/).
 ### Testing
 - Added dual-codec interoperability, limits, corruption, options, cancellation and ownership coverage to native Core CI.
 
-### Planned
-- Temperature conversion utilities
-- Time and duration helpers
-- Human-readable formatting (e.g., “1.5 GB”)
-- Additional numeric abstractions
+### Notes
+This release adds opt-in compression APIs in the existing Core package using framework-provided codecs, with no external dependencies. Existing APIs are preserved. Payloads are buffered in memory, and successful decoding does not establish content integrity or strict compressed-frame validity.
 
 ---
 
