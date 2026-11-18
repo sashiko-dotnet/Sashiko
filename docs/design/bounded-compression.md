@@ -86,34 +86,6 @@ is supplied by BrotliStream. Encoded-output bounds include these empty encodings
 Strict framing, custom archive/container formats, automatic compression bypass,
 additional codecs and streaming to caller-owned destinations are deferred.
 
-## Exploratory codec comparison
-
-Reproduce with `dotnet run --project tools/CompressionComparison -c Release`.
-The tool uses fictional data, one warm-up encode/decode, then three synchronous
-samples per setting. It measures the runtime codecs, not end-to-end CompressedData.
-Allocations count managed bytes on the measuring thread, exclude preallocated input
-and native codec workspace, and are not a peak-memory measurement. Timings from
-this single-machine check are observations, not portable performance promises.
-
-Observed on macOS arm64, .NET 10.0.10, 18 November 2026:
-
-| Fixture | Setting | Encoded bytes | Encode ms | Decode ms | Managed encode allocation bytes |
-| --- | --- | ---: | ---: | ---: | ---: |
-| JSON records, 752,791 bytes | GZip Optimal | 51,368 | 1.473 | 0.678 | 177,325 |
-| JSON records, 752,791 bytes | Brotli quality 4 | 11,952 | 1.466 | 0.475 | 27,000 |
-| JSON records, 752,791 bytes | Brotli quality 11 | 9,767 | 839.848 | 0.780 | 20,802 |
-| Small JSON, 45 bytes | GZip Optimal | 63 | 0.005 | 0.001 | 704 |
-| Small JSON, 45 bytes | Brotli quality 4 | 41 | 0.008 | 0.003 | 600 |
-| Small JSON, 45 bytes | Brotli quality 11 | 49 | 0.225 | 0.003 | 608 |
-| Seeded random bytes, 65,536 bytes | GZip Optimal | 65,576 | 0.943 | 0.025 | 322,629 |
-| Seeded random bytes, 65,536 bytes | Brotli quality 4 | 65,540 | 0.053 | 0.014 | 262,472 |
-
-The record fixture is 10,000 JSON objects with sequential Id, 20 repeating Category
-values, a fixed synthetic Label and Value modulo 1000. The tool contains the exact
-generator and all settings. These observations support keeping format/effort
-explicit. Maximum quality did not produce the smallest small fixture, and random
-data grew. Application defaults need representative workloads.
-
 ## Validation and revisit criteria
 
 Tests cover direct-codec interoperability, empty data, byte preservation, options,

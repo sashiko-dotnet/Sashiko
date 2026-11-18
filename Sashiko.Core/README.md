@@ -293,9 +293,8 @@ adds no external package or codec source/binary. Sashiko's integration remains
 Apache-2.0; .NET and codec components retain their existing permissive licenses
 and applicable notices. The
 [design and license record](https://github.com/sashiko-dotnet/Sashiko/blob/master/docs/design/bounded-compression.md)
-documents alternatives, format behavior, distribution responsibilities and a
-reproducible exploratory comparison. Filesystem publication and encryption remain
-caller composition decisions.
+documents alternatives, format behavior and distribution responsibilities.
+Filesystem publication and encryption remain caller composition decisions.
 
 ---
 

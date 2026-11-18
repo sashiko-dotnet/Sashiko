@@ -12,7 +12,7 @@ The format follows [Semantic Versioning](https://semver.org/).
 - `CompressionOptions` supports runtime compression-level preferences or an explicit Brotli quality. Encoding bounds include finalization, and empty GZip input produces an interoperable empty member.
 
 ### Documentation
-- Recorded build/adopt and licensing decisions, codec comparison methodology and runtime validation limits. A successful bounded decode does not establish full compressed-frame validity or content integrity.
+- Recorded build/adopt and licensing decisions and runtime validation limits. A successful bounded decode does not establish full compressed-frame validity or content integrity.
 
 ### Testing
 - Added dual-codec interoperability, limits, corruption, options, cancellation and ownership coverage to native Core CI.
