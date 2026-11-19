@@ -80,7 +80,9 @@ namespace Sashiko.Validation.Tests.Validators.Json
 
 			var item = Assert.Single(JsonModelLoader.Load(utf8, contract, utf8.Length).Items);
 
-			Assert.Equal(new[] { 2, 3 }, item.Children.Select(child => child.Id));
+			Assert.Collection(item.Children,
+				first => Assert.Equal(2, first.Id),
+				second => Assert.Equal(3, second.Id));
 			Assert.Equal(4, item.Details?.Id);
 		}
 

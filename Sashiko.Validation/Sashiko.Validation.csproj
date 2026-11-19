@@ -7,10 +7,10 @@
 
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.Validation</PackageId>
-		<Version>0.1.3</Version>
+		<Version>0.2.0</Version>
 		<Description>
 			Structural validation engine for the Sashiko ecosystem. Provides hierarchical schema extraction,
-			structural comparison, and format-agnostic validation for configuration files and runtime inputs.
+			structural comparison, and bounded JSON model loading for configuration files and runtime inputs.
 		</Description>
 		<PackageTags>$(SashikoSharedPackageTags);validation;schema;json;configuration;structural</PackageTags>
 	</PropertyGroup>

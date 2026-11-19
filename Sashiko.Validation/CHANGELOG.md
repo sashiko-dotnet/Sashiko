@@ -7,14 +7,22 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
-- Load a complete model from bounded UTF-8 JSON using a caller-supplied `System.Text.Json` contract, with whole-document duplicate checks when requested.
-
 ### Planned
 - YAML and XML schema validators
 - Semantic validation (ranges, patterns, enums)
 - Domain-specific validation rules
 - Structured validation diagnostics
+
+---
+
+## [0.2.0] - 2026-11-19
+
+### Added
+- Load a complete model from bounded UTF-8 JSON with `JsonModelLoader.Load` and a caller-supplied `System.Text.Json` contract.
+- Check duplicate names throughout the document when the contract disallows them, including objects the serializer skips.
+
+### Testing
+- Cover nested collection entries, serializer names, optional members, duplicate policies, and input limits.
 
 ---
 
