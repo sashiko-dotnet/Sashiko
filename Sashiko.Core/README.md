@@ -295,13 +295,13 @@ decoded byte count and a trusted SHA-256 digest for the original content. Supply
 independent limits for encoded input and decoded output.
 
 ```csharp
+var verification = new DecompressionVerification(
+    storedLength, storedDecodedDigest, storedEncodedDigest);
 var restored = await CompressedData.DecompressVerifiedAsync(
     encoded, CompressionFormat.GZip,
     maxInputBytes: 17 * 1024 * 1024,
     maxOutputBytes: 16 * 1024 * 1024,
-    expectedDecodedLength: storedLength,
-    expectedDecodedSha256: storedDecodedDigest,
-    expectedEncodedSha256: storedEncodedDigest,
+    verification: verification,
     cancellationToken: cancellationToken);
 ```
 
@@ -310,8 +310,8 @@ var restored = await CompressedData.DecompressVerifiedAsync(
   throws `InvalidDataException` without returning any bytes.
 - Pass SHA-256 digests as 32 raw bytes. The optional encoded digest covers all
   bytes from the current source position to EOF, including any bytes the codec
-  would ignore. It is verified before decoding. Both expectations are copied
-  before reading the source.
+  would ignore. It is verified before decoding. `DecompressionVerification`
+  copies both digests on construction and can be reused across calls.
 - These methods follow the same bounds and stream ownership rules as ordinary
   decompression. Hashing runs synchronously, and the async method observes
   cancellation between stages and before returning a verified result.

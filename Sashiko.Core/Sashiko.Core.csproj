@@ -7,11 +7,11 @@
 
 		<!-- NuGet package metadata -->
 		<PackageId>Sashiko.Core</PackageId>
-		<Version>0.7.0</Version>
+		<Version>0.8.0</Version>
 		<Description>
 			Core utilities for the Sashiko ecosystem. Provides deterministic randomization,
 			text normalization, unit conversions, staged and verified file writes, bounded reads,
-			bounded GZip/Brotli payload compression, and foundational helpers for higher-level Sashiko packages.
+			bounded GZip/Brotli compression and verified decompression, and foundational helpers for higher-level Sashiko packages.
 		</Description>
 		<PackageTags>$(SashikoSharedPackageTags);utilities;random;probability;text;normalization;units;io;files;streams;compression;gzip;brotli;core</PackageTags>
 	</PropertyGroup>
