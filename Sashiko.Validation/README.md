@@ -15,7 +15,6 @@ It is built to catch shape problems early, before data is deserialized into a do
 - Case-sensitive or case-insensitive matching
 - Array element validation
 - Context-aware JSON parsing and opt-in duplicate-property rejection
-- Bounded UTF-8 model loading with `System.Text.Json` contracts
 - Format-agnostic `ISchemaValidator` abstraction
 - Zero external dependencies
 
@@ -126,61 +125,6 @@ redefine the reflected C# schema.
 
 Repeated sibling properties and collection elements may reuse the same C# type.
 Recursion protection applies only to types already on the current ancestor path.
-
-### Load and validate a whole JSON model
-
-Use `JsonModelLoader` when you have UTF-8 bytes and want to validate the input
-against the same contract used to create the model. For example, a configuration
-document with collections of records can be loaded in one call:
-
-```csharp
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-using Sashiko.Validation.Validators.Json;
-
-var options = new JsonSerializerOptions
-{
-    TypeInfoResolver = new DefaultJsonTypeInfoResolver(),
-    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    PropertyNameCaseInsensitive = true,
-    AllowDuplicateProperties = false,
-    RespectRequiredConstructorParameters = true,
-    RespectNullableAnnotations = true,
-    UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
-    MaxDepth = 32
-};
-var contract = (JsonTypeInfo<Catalog>)options.GetTypeInfo(typeof(Catalog));
-var catalog = JsonModelLoader.Load(
-    """{"items":[{"id":1},{"id":2,"label":null}]}"""u8, contract, maxInputBytes: 64 * 1024);
-
-record Catalog(List<Item> Items);
-record Item(int Id, string? Label = null);
-```
-
-The inclusive byte limit covers the supplied UTF-8 value, including whitespace.
-Keep the source bytes stable for the call and supply one value without a byte
-order mark. The limit applies to the input buffer, so callers reading files or
-streams should also enforce a limit while reading.
-
-The serializer applies its contract to each bound collection element, including
-elements after the first. Empty collections and optional members follow that
-contract. Apply any additional rules your model needs after loading, including
-non-null collection elements when required. `RespectNullableAnnotations` covers
-supported members and constructor parameters and has runtime limits for generic
-members and collection elements. Supplied converters control their own value
-rules and should be trusted application code.
-
-When duplicate names are disallowed, a separate reader pass checks every JSON
-object, including data skipped by the serializer or read by custom converters.
-It compares decoded names with ordinal matching, using ordinal case-insensitive
-matching when the contract requests it. The model is deserialized once with the
-supplied metadata and normal `System.Text.Json` metadata lifecycle.
-
-Input failures use `JsonException`, with paths and positions when supplied by the
-serializer. Exception details can include names from the input, so select what
-to display or log. `JsonSchemaValidator` remains available for consumers that
-want reflected structural validation and the existing missing/extra field diff.
 
 ---
 

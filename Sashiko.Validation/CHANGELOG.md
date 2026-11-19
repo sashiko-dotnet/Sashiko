@@ -7,9 +7,6 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
-- Load a complete model from bounded UTF-8 JSON using a caller-supplied `System.Text.Json` contract, with whole-document duplicate checks when requested.
-
 ### Planned
 - YAML and XML schema validators
 - Semantic validation (ranges, patterns, enums)
