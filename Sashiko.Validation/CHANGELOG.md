@@ -15,6 +15,17 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.0] - 2026-11-19
+
+### Added
+- Load a complete model from bounded UTF-8 JSON with `JsonModelLoader.Load` and a caller-supplied `System.Text.Json` contract.
+- Check duplicate names throughout the document when the contract disallows them, including objects the serializer skips.
+
+### Testing
+- Cover nested collection entries, serializer names, optional members, duplicate policies, and input limits.
+
+---
+
 ## [0.1.3] - 2026-11-17
 
 ### Fixed
