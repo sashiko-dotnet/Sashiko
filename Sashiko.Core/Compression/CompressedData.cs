@@ -11,7 +11,7 @@ namespace Sashiko.Core.Compression
 	/// Use a trusted decoded length/hash or authenticated container when integrity is required.
 	/// See the Core README for format-specific behavior and ownership limits.
 	/// </remarks>
-	public static class CompressedData
+	public static partial class CompressedData
 	{
 		private const int BufferSize = 80 * 1024;
 		// RFC 1952 header, empty DEFLATE block, zero CRC-32 and zero ISIZE. .NET's
@@ -99,6 +99,11 @@ namespace Sashiko.Core.Compression
 		{
 			Validate(format, maxInputBytes, maxOutputBytes, options: null);
 			var input = BoundedRead.ReadAllBytes(source, maxInputBytes);
+			return Decode(input, format, maxOutputBytes);
+		}
+
+		private static byte[] Decode(byte[] input, CompressionFormat format, int maxOutputBytes)
+		{
 			EnsureEncodedInput(input);
 			using var encoded = new MemoryStream(input, writable: false);
 			using var decoder = CreateDecoder(encoded, format);
@@ -126,6 +131,12 @@ namespace Sashiko.Core.Compression
 		{
 			Validate(format, maxInputBytes, maxOutputBytes, options: null);
 			var input = await BoundedRead.ReadAllBytesAsync(source, maxInputBytes, cancellationToken).ConfigureAwait(false);
+			return await DecodeAsync(input, format, maxOutputBytes, cancellationToken).ConfigureAwait(false);
+		}
+
+		private static async Task<byte[]> DecodeAsync(byte[] input, CompressionFormat format, int maxOutputBytes,
+			CancellationToken cancellationToken)
+		{
 			EnsureEncodedInput(input);
 			using var encoded = new MemoryStream(input, writable: false);
 			await using var decoder = CreateDecoder(encoded, format);

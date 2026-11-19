@@ -7,6 +7,9 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `CompressedData.DecompressVerified` and `DecompressVerifiedAsync` enforce an exact decoded length and SHA-256 digest, with an optional encoded SHA-256 check before decoding.
+
 ### Planned
 - Temperature conversion utilities
 - Time and duration helpers
