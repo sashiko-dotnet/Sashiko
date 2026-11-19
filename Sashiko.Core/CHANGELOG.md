@@ -7,10 +7,12 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `ByteSize.Format` displays signed byte counts with binary or decimal units and culture-specific number formatting.
+
 ### Planned
 - Temperature conversion utilities
 - Time and duration helpers
-- Human-readable formatting (e.g., “1.5 GB”)
 - Additional numeric abstractions
 
 ---
