@@ -288,6 +288,37 @@ var restored = await CompressedData.DecompressAsync(
 Decoded bytes are preserved exactly. Encoded bytes are not promised to be
 canonical or stable across runtime versions, effort settings or write chunking.
 
+#### Verified decompression
+
+Use `DecompressVerified` or `DecompressVerifiedAsync` when you have an exact
+decoded byte count and a trusted SHA-256 digest for the original content. Supply
+independent limits for encoded input and decoded output.
+
+```csharp
+var verification = new DecompressionVerification(
+    storedLength, storedDecodedDigest, storedEncodedDigest);
+var restored = await CompressedData.DecompressVerifiedAsync(
+    encoded, CompressionFormat.GZip,
+    maxInputBytes: 17 * 1024 * 1024,
+    maxOutputBytes: 16 * 1024 * 1024,
+    verification: verification,
+    cancellationToken: cancellationToken);
+```
+
+- The declared length must fit within the caller's output limit. Decoding stops
+  if it exceeds that declared length. An undersized result or a digest mismatch
+  throws `InvalidDataException` without returning any bytes.
+- Pass SHA-256 digests as 32 raw bytes. The optional encoded digest covers all
+  bytes from the current source position to EOF, including any bytes the codec
+  would ignore. It is verified before decoding. `DecompressionVerification`
+  copies both digests on construction and can be reused across calls.
+- These methods follow the same bounds and stream ownership rules as ordinary
+  decompression. Hashing runs synchronously, and the async method observes
+  cancellation between stages and before returning a verified result.
+- Verification depends on the source of the expected digests. Use authenticated
+  metadata when a sender could replace both a payload and its digests. The
+  codec's framing behavior remains the same as for ordinary decompression.
+
 The implementation uses .NET's codec APIs and the existing bounded reader. It
 adds no external package or codec source/binary. Sashiko's integration remains
 Apache-2.0; .NET and codec components retain their existing permissive licenses

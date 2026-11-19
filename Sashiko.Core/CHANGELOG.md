@@ -15,6 +15,17 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.8.0] - 2026-11-19
+
+### Added
+- `CompressedData.DecompressVerified` and `DecompressVerifiedAsync` enforce independent byte limits and verify the exact decoded length and SHA-256 digest for GZip and Brotli.
+- `DecompressionVerification` copies the expected digests and supports an optional encoded SHA-256 check before decoding.
+
+### Testing
+- Cover length and digest mismatches, byte limits, empty payloads, and caller stream ownership and cancellation.
+
+---
+
 ## [0.7.0] - 2026-11-18
 
 ### Added
