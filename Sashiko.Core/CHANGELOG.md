@@ -7,13 +7,21 @@ The format follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
-- `ByteSize.Format` displays signed byte counts with binary or decimal units and culture-specific number formatting.
-
 ### Planned
 - Temperature conversion utilities
 - Time and duration helpers
 - Additional numeric abstractions
+
+---
+
+## [0.9.0] - 2026-11-20
+
+### Added
+- `ByteSize.Format` displays signed byte counts with binary IEC or decimal SI units and culture-specific number formatting.
+- Supports configurable precision and promotes the display to the next unit when rounding reaches its threshold.
+
+### Testing
+- Cover unit boundaries, signed extremes, rounding, precision, and culture-specific formatting.
 
 ---
 
