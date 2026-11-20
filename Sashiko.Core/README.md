@@ -44,6 +44,27 @@ var gigabytes = MemoryConverter.Convert(
 Console.WriteLine(gigabytes); // 1
 ```
 
+### Byte-size formatting
+
+```csharp
+using System.Globalization;
+using Sashiko.Core.Conversions;
+using Sashiko.Core.Models.Enums;
+
+var size = ByteSize.Format(1_572_864, formatProvider: CultureInfo.InvariantCulture);
+// 1.5 MiB
+var localizedSize = ByteSize.Format(1_500_000, ByteUnitStyle.Decimal,
+    formatProvider: CultureInfo.GetCultureInfo("it-IT"));
+// 1,5 MB
+```
+
+`ByteSize.Format` takes a signed `long` byte count. It defaults to binary units
+(`B`, `KiB`, `MiB` through `EiB`). Use `ByteUnitStyle.Decimal` for powers of
+1000 (`B`, `kB`, `MB` through `EB`). The number uses the supplied format provider
+or the current culture. It shows up to two fractional digits by default, rounds
+midpoints away from zero, and promotes to the next unit if rounding reaches its
+threshold. Use the original byte count for storage, limits, and comparisons.
+
 ### Bandwidth conversions
 
 ```csharp
